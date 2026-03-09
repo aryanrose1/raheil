@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The KW Padel Gap · Raheil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --ink:        #0a0a0a;
+  --ink-mid:    #2a2a2a;
+  --paper:      #fafaf8;
+  --green:      #00c27a;
+  --green-deep: #00935c;
+  --green-tint: #e8faf3;
+  --grey:       #6b6b6b;
+  --grey-light: #f0efed;
+  --border:     #e2e0de;
+
+  --sp1:  8px;
+  --sp2:  16px;
+  --sp3:  24px;
+  --sp4:  32px;
+  --sp5:  48px;
+  --sp6:  72px;
+
+  --r:    12px;
+  --edge: 52px;
+  --gap:  60px;
+  --max:  1260px;
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════ */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:var(--green);z-index:200;
+  transition:width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav{
+  position:fixed;top:3px;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--edge);
+  background:rgba(250,250,248,0.93);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{font-family:'DM Serif Display',serif;font-size:16px;letter-spacing:-0.2px;}
+.nav-r{display:flex;align-items:center;gap:var(--sp2);}
+.nav-tag{font-size:11px;color:var(--grey);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* ═══════════════════════════════════════
+   BADGE
+═══════════════════════════════════════ */
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--green-tint);border:1px solid rgba(0,194,122,0.28);
+  border-radius:20px;padding:5px 12px;
+  font-size:10px;font-weight:500;color:var(--green-deep);
+  letter-spacing:0.07em;text-transform:uppercase;
+}
+.bdot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════ */
+.d{font-family:'DM Serif Display',serif;line-height:1.05;letter-spacing:-1.5px;}
+.d em{font-style:italic;color:var(--green);}
+
+.s-num{
+  display:block;font-size:10px;font-weight:600;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--green);
+  margin-bottom:var(--sp3);
+}
+.s-title{font-size:clamp(24px,2.6vw,38px);margin-bottom:var(--sp3);}
+.b{font-size:15px;line-height:1.8;color:var(--ink-mid);font-weight:300;}
+.b+.b{margin-top:var(--sp2);}
+
+/* ═══════════════════════════════════════
+   LAYOUT SHELL
+   Every section: .wrap inside handles max-width + 2-col
+═══════════════════════════════════════ */
+section{
+  border-bottom:1px solid var(--border);
+  padding:var(--sp6) 0;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .6s ease,transform .6s ease;
+}
+section.vis{opacity:1;transform:translateY(0);}
+section.sec-dark{background:var(--ink);}
+
+.wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 var(--edge);
+}
+
+/* Standard 2-col: 44/56 split */
+.cols{
+  display:grid;
+  grid-template-columns:44fr 56fr;
+  gap:var(--gap);
+  align-items:start;
+}
+/* Narrow left for sections where left is label+title only */
+.cols-wide{
+  display:grid;
+  grid-template-columns:38fr 62fr;
+  gap:var(--gap);
+  align-items:start;
+}
+
+/* ═══════════════════════════════════════
+   CARD SYSTEM — one component, 3 skins
+═══════════════════════════════════════ */
+.card{
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:var(--sp3);
+  transition:border-color .18s,box-shadow .18s,transform .18s;
+}
+.card:hover{
+  border-color:rgba(0,194,122,.4);
+  box-shadow:0 6px 28px rgba(0,194,122,.08);
+  transform:translateY(-2px);
+}
+.card-k{background:var(--ink);border-color:var(--ink);}
+.card-k:hover{border-color:var(--green);}
+.card-t{background:var(--green-tint);border-color:rgba(0,194,122,.2);}
+
+.c-eye{
+  font-size:10px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--grey);
+  margin-bottom:var(--sp2);padding-bottom:var(--sp2);
+  border-bottom:1px solid var(--border);
+}
+.card-k .c-eye{color:rgba(255,255,255,.35);border-color:rgba(255,255,255,.08);}
+.card-t .c-eye{color:var(--green-deep);border-color:rgba(0,194,122,.2);}
+
+.c-head{
+  font-family:'DM Serif Display',serif;
+  font-size:19px;letter-spacing:-.3px;line-height:1.2;
+  margin-bottom:var(--sp1);
+}
+.card-k .c-head{color:#fff;}
+
+.c-body{font-size:13px;color:var(--grey);line-height:1.65;font-weight:300;}
+.card-k .c-body{color:rgba(255,255,255,.48);}
+
+.c-src{font-size:10px;color:var(--green-deep);margin-top:var(--sp1);font-style:italic;}
+
+/* grids */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2);}
+.stk{display:flex;flex-direction:column;gap:var(--sp2);}
+
+/* ═══════════════════════════════════════
+   CALLOUT
+═══════════════════════════════════════ */
+.callout{
+  background:var(--green-tint);border:1px solid rgba(0,194,122,.2);
+  border-radius:var(--r);padding:var(--sp3);margin-top:var(--sp4);
+}
+.cl-n{
+  font-family:'DM Serif Display',serif;
+  font-size:52px;line-height:1;letter-spacing:-2px;color:var(--green);
+}
+.cl-l{font-size:13px;color:var(--ink-mid);margin-top:6px;font-weight:400;line-height:1.5;}
+.cl-s{font-size:10px;color:var(--grey);margin-top:4px;font-style:italic;}
+
+/* ═══════════════════════════════════════
+   STAT CARD
+═══════════════════════════════════════ */
+.stat{border:1px solid var(--border);border-radius:var(--r);padding:var(--sp3);}
+.sn{
+  font-family:'DM Serif Display',serif;
+  font-size:32px;letter-spacing:-1px;line-height:1;color:var(--green);
+}
+.sl{font-size:12px;color:var(--ink-mid);margin-top:6px;font-weight:400;line-height:1.4;}
+.ss{font-size:10px;color:var(--grey);margin-top:3px;font-style:italic;}
+
+/* ═══════════════════════════════════════
+   CHART BOX
+═══════════════════════════════════════ */
+.ch-box{background:var(--ink);border-radius:var(--r);padding:var(--sp3);}
+.ch-cap{
+  font-size:10px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);
+  margin-bottom:var(--sp4);
+}
+.br-rows{display:flex;flex-direction:column;gap:12px;}
+.br-row{display:grid;grid-template-columns:104px 1fr 36px;align-items:center;gap:10px;}
+.br-t{font-size:11px;color:rgba(255,255,255,.4);}
+.br-track{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.br-fill{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
+.br-fill.lo{background:rgba(255,255,255,.14);}
+.br-fill.md{background:#ffd93d;}
+.br-fill.hi{background:var(--green);}
+.br-p{font-size:10px;color:rgba(255,255,255,.3);text-align:right;}
+.ch-leg{
+  display:flex;gap:14px;flex-wrap:wrap;
+  margin-top:var(--sp3);padding-top:var(--sp3);
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.ch-li{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.35);}
+.ch-ld{width:6px;height:6px;border-radius:50%;}
+
+/* ═══════════════════════════════════════
+   TERMS
+═══════════════════════════════════════ */
+.terms{
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:var(--sp3);margin-top:var(--sp4);
+}
+.tr-h{
+  font-size:10px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--grey);
+  margin-bottom:var(--sp3);padding-bottom:var(--sp2);
+  border-bottom:1px solid var(--border);
+}
+.tr-list{display:flex;flex-direction:column;gap:var(--sp2);}
+.tr-row{display:grid;grid-template-columns:12px 1fr;gap:var(--sp2);align-items:start;}
+.tr-dot{width:5px;height:5px;background:var(--green);border-radius:50%;margin-top:9px;}
+.tr-tx{font-size:13px;color:var(--ink-mid);line-height:1.6;font-weight:300;}
+.tr-tx strong{font-weight:500;}
+
+/* ═══════════════════════════════════════
+   STEPS
+═══════════════════════════════════════ */
+.steps{display:flex;flex-direction:column;}
+.step{
+  display:grid;grid-template-columns:32px 1fr;gap:var(--sp3);
+  padding:var(--sp3) 0;border-bottom:1px solid var(--border);
+}
+.step:first-child{padding-top:0;}
+.step:last-child{border-bottom:none;}
+.st-n{font-family:'DM Serif Display',serif;font-size:16px;color:var(--green);padding-top:2px;}
+.st-t{font-size:13px;font-weight:500;margin-bottom:4px;}
+.st-b{font-size:12px;color:var(--grey);line-height:1.6;font-weight:300;}
+
+/* ═══════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════ */
+.tl{position:relative;}
+.tl::before{
+  content:'';position:absolute;left:17px;top:5px;bottom:5px;
+  width:1px;background:var(--border);
+}
+.tl-row{display:grid;grid-template-columns:34px 1fr;gap:var(--sp2);padding-bottom:var(--sp3);}
+.tl-row:last-child{padding-bottom:0;}
+.tl-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--green);margin-top:5px;
+  position:relative;left:13px;z-index:1;
+}
+.tl-dot.act{box-shadow:0 0 0 4px var(--green-tint);animation:pulse 2s ease-in-out infinite;}
+.tl-dot.fut{background:var(--border);}
+.tl-d{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:3px;}
+.tl-d.fut{color:var(--grey);}
+.tl-t{font-size:13px;font-weight:500;margin-bottom:3px;}
+.tl-b{font-size:12px;color:var(--grey);line-height:1.6;font-weight:300;}
+
+/* ═══════════════════════════════════════
+   CANVAS WRAP
+═══════════════════════════════════════ */
+.cv{border-radius:var(--r);padding:var(--sp3);}
+.cv-dk{background:var(--ink);}
+.cv-lt{background:var(--grey-light);border:1px solid var(--border);}
+.cv-cap{
+  font-size:10px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:var(--sp3);
+}
+.cv-dk .cv-cap{color:rgba(255,255,255,.35);}
+.cv-lt .cv-cap{color:var(--grey);}
+.cv canvas{width:100%;height:auto;display:block;}
+.cv-note{
+  border-radius:var(--r);padding:var(--sp2) var(--sp3);margin-top:var(--sp1);
+  font-size:12px;line-height:1.65;font-weight:300;color:var(--ink-mid);
+  border:1px solid var(--border);background:var(--grey-light);
+}
+.cv-note strong{font-weight:500;}
+.cv-leg{display:flex;gap:14px;flex-wrap:wrap;margin-top:var(--sp2);padding-top:var(--sp2);border-top:1px solid rgba(255,255,255,.07);}
+.cv-li{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.35);}
+.cv-ld{width:6px;height:6px;border-radius:50%;}
+
+/* ═══════════════════════════════════════
+   FUNNEL (dark section)
+═══════════════════════════════════════ */
+.funnel{border:1px solid rgba(255,255,255,.1);border-radius:var(--r);overflow:hidden;margin-top:var(--sp5);}
+.fn-row{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:var(--sp4);align-items:center;
+  padding:var(--sp3) var(--sp4);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.fn-row:last-child{border-bottom:none;}
+.fn-row.fn-0{background:rgba(255,255,255,.05);}
+.fn-row.fn-1{background:rgba(255,255,255,.03);}
+.fn-row.fn-2{background:rgba(255,255,255,.03);}
+.fn-row.fn-3{background:rgba(0,194,122,.1);border-color:rgba(0,194,122,.2);}
+.fn-arr{
+  display:flex;justify-content:center;align-items:center;height:28px;
+  background:rgba(255,255,255,.03);
+  border-left:1px solid rgba(255,255,255,.06);
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.fn-eye{font-size:9px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;margin-bottom:5px;}
+.fn-0 .fn-eye,.fn-1 .fn-eye,.fn-2 .fn-eye{color:rgba(255,255,255,.3);}
+.fn-3 .fn-eye{color:rgba(0,194,122,.8);}
+.fn-ttl{font-family:'DM Serif Display',serif;font-size:22px;letter-spacing:-.4px;line-height:1.15;color:#fff;}
+.fn-ttl em{font-style:normal;color:var(--green);}
+.fn-body{font-size:13px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.45);}
+.fn-3 .fn-body{color:rgba(255,255,255,.65);}
+.fn-body strong{font-weight:500;color:rgba(255,255,255,.85);}
+.fn-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:var(--sp2);}
+.tag{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:400;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);}
+.tag-g{background:rgba(0,194,122,.15);border-color:rgba(0,194,122,.25);color:var(--green);}
+.sig{
+  display:inline-flex;align-items:center;
+  background:var(--green);color:#fff;
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:20px;margin-bottom:var(--sp1);
+}
+
+/* dark section type overrides */
+.sec-dark .s-num{color:var(--green);}
+.sec-dark .s-title{color:#fff;}
+.sec-dark .b{color:rgba(255,255,255,.55);}
+
+/* ═══════════════════════════════════════
+   QUOTE
+═══════════════════════════════════════ */
+.quote{
+  margin-top:var(--sp4);
+  border-left:3px solid var(--green);
+  background:var(--green-tint);
+  border-radius:0 var(--r) var(--r) 0;
+  padding:var(--sp3) var(--sp4);
+}
+.q-tx{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.5;font-style:italic;}
+.q-at{font-size:11px;color:var(--grey);margin-top:8px;}
+
+/* ═══════════════════════════════════════
+   COST PRICE
+═══════════════════════════════════════ */
+.cprice{
+  font-family:'DM Serif Display',serif;
+  font-size:34px;letter-spacing:-1px;line-height:1;
+}
+.card-k .cprice{color:var(--green);}
+.cdesc{font-size:12px;color:var(--grey);margin-top:6px;line-height:1.55;font-weight:300;}
+.csrc{font-size:10px;color:var(--grey);margin-top:4px;font-style:italic;opacity:.7;}
+
+/* ═══════════════════════════════════════
+   TITLE BAR
+═══════════════════════════════════════ */
+.title-bar{
+  background:var(--ink);
+  padding:10px var(--edge);
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.tb-left{display:flex;align-items:center;gap:var(--sp3);}
+.tb-label{
+  font-size:10px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);
+}
+.tb-sep{width:1px;height:14px;background:rgba(255,255,255,.12);}
+.tb-title{
+  font-family:'DM Serif Display',serif;
+  font-size:14px;color:rgba(255,255,255,.7);letter-spacing:-.2px;
+}
+.tb-right{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.07em;text-transform:uppercase;}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero{
+  min-height:auto;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:var(--sp6) 0 var(--sp5);
+  padding-top:calc(var(--sp6) + 54px); /* offset for fixed nav */
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 45% 60% at 88% 50%,var(--green-tint) 0%,transparent 55%);
+  opacity:.5;
+}
+.hero-court{
+  position:absolute;right:3%;bottom:-40px;
+  opacity:.045;pointer-events:none;
+  /* clip to bottom-right so it never bleeds into empty space */
+  clip-path:inset(20% 0 0 20%);
+}
+.hero-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--edge);
+  display:grid;grid-template-columns:58fr 42fr;gap:var(--gap);align-items:center;
+}
+.hero-l{position:relative;z-index:1;}
+.hero-r{position:relative;z-index:1;}
+
+.h-eye{
+  display:flex;align-items:center;gap:var(--sp2);margin-bottom:var(--sp4);
+  opacity:0;animation:fadeUp .5s ease forwards .1s;
+}
+.h-eye-label{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);}
+.h-intro{
+  max-width:580px;margin-bottom:var(--sp3);
+  opacity:0;animation:fadeUp .5s ease forwards .25s;
+}
+.h-intro p{font-size:14px;color:var(--grey);line-height:1.75;font-weight:300;}
+.h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(40px,5.2vw,76px);
+  line-height:1.04;letter-spacing:-2px;
+  opacity:0;animation:fadeUp .65s ease forwards .4s;
+}
+.h1 em{font-style:italic;color:var(--green);}
+.h-sub{
+  font-size:15px;color:var(--grey);max-width:480px;
+  margin-top:var(--sp3);font-weight:300;line-height:1.75;
+  opacity:0;animation:fadeUp .65s ease forwards .55s;
+}
+
+/* Hero right: KPI panel */
+.h-kpis{
+  background:var(--grey-light);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  opacity:0;animation:fadeUp .65s ease forwards .65s;
+}
+.h-kpi{
+  padding:var(--sp3) var(--sp4);
+  border-bottom:1px solid var(--border);
+}
+.h-kpi:last-child{border-bottom:none;}
+.h-kn{
+  font-family:'DM Serif Display',serif;
+  font-size:36px;letter-spacing:-1px;line-height:1;color:var(--green);
+}
+.h-kl{font-size:12px;color:var(--grey);margin-top:5px;font-weight:400;line-height:1.4;}
+
+/* ═══════════════════════════════════════
+   TICKER STRIP
+═══════════════════════════════════════ */
+.ticker{
+  background:var(--ink);overflow:hidden;
+  padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);
+  opacity:0;animation:fadeUp .5s ease forwards .8s;
+}
+.ticker-track{
+  display:flex;gap:var(--sp5);white-space:nowrap;
+  animation:marquee 28s linear infinite;
+}
+.ticker-track:hover{animation-play-state:paused;}
+.tk-item{
+  display:flex;align-items:center;gap:var(--sp2);
+  font-size:11px;color:rgba(255,255,255,.45);font-weight:400;
+}
+.tk-dot{width:4px;height:4px;background:var(--green);border-radius:50%;flex-shrink:0;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{
+  padding:var(--sp5) var(--edge);max-width:var(--max);margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.ft-wrap{border-top:1px solid var(--border);}
+.ft-wrap footer{margin:0;max-width:none;padding:var(--sp4) var(--edge);}
+.f-brand{font-family:'DM Serif Display',serif;font-size:16px;}
+.f-note{text-align:right;}
+.f-note p{font-size:11px;color:var(--grey);line-height:1.7;}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:860px){
+  :root{--edge:24px;--gap:28px;}
+  .cols,.cols-wide,.hero-inner{grid-template-columns:1fr;}
+  .g3,.g2{grid-template-columns:1fr;}
+  .hero-kpis{grid-template-columns:1fr 1fr;}
+  .h-kpis{margin-top:var(--sp4);}
+  .fn-row{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:var(--sp2);}
+  .f-note{text-align:center;}
+  .hero-court{display:none;}
+}
+
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Raheil, Case Study</div>
+  <div class="nav-r">
+    <span class="nav-tag">KW Padel · 2025–26</span>
+    <span class="badge"><span class="bdot"></span>Live</span>
+  </div>
+</nav>
+
+<!-- TITLE BAR -->
+<div class="title-bar">
+  <div class="tb-left">
+    <span class="tb-label">Case Study</span>
+    <div class="tb-sep"></div>
+    <span class="tb-title">I found an underserved segment. Then I built the product.</span>
+  </div>
+  <span class="tb-right">Wealthsimple Accelerators 2026</span>
+</div>
+
+<!-- ══════════════════════════ HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <!-- Court SVG background -->
+  <svg class="hero-court" width="320" height="520" viewBox="0 0 200 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="184" height="314" stroke="#00c27a" stroke-width="1.5"/>
+    <line x1="8" y1="165" x2="192" y2="165" stroke="#00c27a" stroke-width="2.5"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#00c27a" stroke-width="1"/>
+    <line x1="8" y1="230" x2="192" y2="230" stroke="#00c27a" stroke-width="1"/>
+    <line x1="100" y1="8" x2="100" y2="100" stroke="#00c27a" stroke-width="1"/>
+    <line x1="100" y1="230" x2="100" y2="322" stroke="#00c27a" stroke-width="1"/>
+    <rect x="8" y="8" width="184" height="314" stroke="#00c27a" stroke-width="3" rx="1"/>
+    <circle cx="100" cy="165" r="3" fill="#00c27a"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-l">
+      <div class="h-eye">
+        <span class="h-eye-label">Raheil · UWaterloo</span>
+        <span class="badge"><span class="bdot"></span>In progress · Mar 2026</span>
+      </div>
+      <h1 class="h1 d">I found an <em>underserved segment.</em> Then I built the product.</h1>
+      <p class="h-sub">A data-driven case study on identifying supply-demand misalignment in KW's emerging padel market — and what I negotiated, built, and shipped in under 8 weeks with no budget.</p>
+    </div>
+    <div class="hero-r">
+      <div class="h-kpis">
+        <div class="h-kpi">
+          <div class="h-kn">~55%</div>
+          <div class="h-kl">Of daily court hours sitting empty before intervention</div>
+        </div>
+        <div class="h-kpi">
+          <div class="h-kn">$25</div>
+          <div class="h-kl">Per student per 90 min session, rackets included</div>
+        </div>
+        <div class="h-kpi">
+          <div class="h-kn">&lt;8 wks</div>
+          <div class="h-kl">From first conversation to formal written partnership</div>
+        </div>
+        <div class="h-kpi">
+          <div class="h-kn">1st</div>
+          <div class="h-kl">Student ever given a keyholder role at this facility</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="tk-item"><span class="tk-dot"></span>35M+ padel players worldwide</span>
+    <span class="tk-item"><span class="tk-dot"></span>77,300 courts globally as of 2025</span>
+    <span class="tk-item"><span class="tk-dot"></span>World's fastest growing sport</span>
+    <span class="tk-item"><span class="tk-dot"></span>One court in all of KW</span>
+    <span class="tk-item"><span class="tk-dot"></span>Canadian clubs typically 35–50% utilized</span>
+    <span class="tk-item"><span class="tk-dot"></span>Rookie and Ace: below benchmark, concentrated evenings</span>
+    <span class="tk-item"><span class="tk-dot"></span>$25+HST per session, rackets included</span>
+    <span class="tk-item"><span class="tk-dot"></span>1 student already converted to paid club member</span>
+    <span class="tk-item"><span class="tk-dot"></span>35M+ padel players worldwide</span>
+    <span class="tk-item"><span class="tk-dot"></span>77,300 courts globally as of 2025</span>
+    <span class="tk-item"><span class="tk-dot"></span>World's fastest growing sport</span>
+    <span class="tk-item"><span class="tk-dot"></span>One court in all of KW</span>
+    <span class="tk-item"><span class="tk-dot"></span>Canadian clubs typically 35–50% utilized</span>
+    <span class="tk-item"><span class="tk-dot"></span>Rookie and Ace: below benchmark, concentrated evenings</span>
+    <span class="tk-item"><span class="tk-dot"></span>$25+HST per session, rackets included</span>
+    <span class="tk-item"><span class="tk-dot"></span>1 student already converted to paid club member</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════ 01 CONTEXT -->
+<section id="context">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">01 Context</span>
+        <h2 class="s-title d">The world's fastest growing sport. <em>Barely here.</em></h2>
+        <p class="b">Padel is the world's fastest growing sport. Growing up in Dubai, I watched it take over. When I arrived in Canada, padel was barely here. But the few places that had courts were completely booked out. The demand signal was obvious. Supply was the constraint, not interest.</p>
+        <p class="b">In Kitchener-Waterloo: one facility, one court, one owner. No student presence. Nobody had tried to build the demand side. That gap is what I went looking for.</p>
+      </div>
+      <div class="stk">
+        <div class="card">
+          <div class="c-eye">Global Growth · FIP World Padel Report 2025</div>
+          <div class="c-head d">35M+ players worldwide</div>
+          <div class="c-body">77,300 courts as of mid-2025, up from ~40,000 in 2022. The pace of club openings accelerated 26% in 2024 alone. Canada is an emerging market still in its early innings.</div>
+        </div>
+        <div class="card">
+          <div class="c-eye">North America · Padel United Sports Club, 2025</div>
+          <div class="c-head d">US: 200 to 688 courts in 3 years</div>
+          <div class="c-body">The US adoption curve compressed faster than any other market. Canada is behind, but consistently follows the US curve with a 2–3 year lag. The rush is coming.</div>
+        </div>
+        <div class="card card-t">
+          <div class="c-eye">Kitchener-Waterloo · Direct observation</div>
+          <div class="c-head d">One court. One owner. Zero student community.</div>
+          <div class="c-body">Rookie and Ace: single-court, owner-operated. The only padel option in the region. Sitting mostly empty during the day. No student pricing. No demand-side strategy. A clear opening.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 02 DATA -->
+<section id="data">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">02 The Data</span>
+        <h2 class="s-title d">I scraped their booking data. The gap was <em>hiding in plain sight.</em></h2>
+        <p class="b">Rather than assume, I pulled booking data directly from Rookie and Ace's reservation system. The pattern was immediate: courts sat near-empty every weekday before 3:30pm — a multi-hour window of dead time on a fixed-cost asset.</p>
+        <p class="b">I also interviewed Derek directly to understand the cost structure. Well-managed Canadian clubs typically run at 35–50% utilization. Rookie and Ace was below that benchmark, concentrated entirely in the evening.</p>
+        <div class="callout">
+          <div class="cl-n">~55%</div>
+          <div class="cl-l">Of daily operating hours generating near-zero revenue before intervention</div>
+          <div class="cl-s">HKC Construction, Canadian Padel Club Analysis 2025 · 35–50% typical utilization benchmark</div>
+        </div>
+      </div>
+      <div>
+        <div class="ch-box">
+          <div class="ch-cap">Court Utilization by Time Slot, Pre-Intervention</div>
+          <div class="br-rows">
+            <div class="br-row"><div class="br-t">8:00 – 10:00</div><div class="br-track"><div class="br-fill lo" data-w="6"></div></div><div class="br-p">~6%</div></div>
+            <div class="br-row"><div class="br-t">10:00 – 12:00</div><div class="br-track"><div class="br-fill lo" data-w="5"></div></div><div class="br-p">~5%</div></div>
+            <div class="br-row"><div class="br-t">12:00 – 14:00</div><div class="br-track"><div class="br-fill lo" data-w="8"></div></div><div class="br-p">~8%</div></div>
+            <div class="br-row"><div class="br-t">14:00 – 15:30</div><div class="br-track"><div class="br-fill lo" data-w="10"></div></div><div class="br-p">~10%</div></div>
+            <div class="br-row"><div class="br-t">15:30 – 17:30</div><div class="br-track"><div class="br-fill md" data-w="45"></div></div><div class="br-p">~45%</div></div>
+            <div class="br-row"><div class="br-t">17:30 – 20:00</div><div class="br-track"><div class="br-fill hi" data-w="82"></div></div><div class="br-p">~82%</div></div>
+            <div class="br-row"><div class="br-t">20:00 – 22:00</div><div class="br-track"><div class="br-fill hi" data-w="91"></div></div><div class="br-p">~91%</div></div>
+          </div>
+          <div class="ch-leg">
+            <div class="ch-li"><div class="ch-ld" style="background:rgba(255,255,255,.14)"></div>Near empty</div>
+            <div class="ch-li"><div class="ch-ld" style="background:#ffd93d"></div>Partial</div>
+            <div class="ch-li"><div class="ch-ld" style="background:var(--green)"></div>High demand</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 03 AFFORDABILITY -->
+<section id="cost">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">03 Affordability Problem</span>
+        <h2 class="s-title d">Padel is an <em>expensive sport.</em> That's half the problem.</h2>
+        <p class="b">Even if courts were available during the day, students couldn't afford the market rate. The solution had to fix both sides: unlock the supply and lower the price point. One without the other doesn't work.</p>
+        <p class="b">The negotiated student rate — $25+HST including rackets — ended up cheaper than Rookie and Ace's own off-peak split rate, with equipment included. That's the structural unlock.</p>
+        <div class="callout">
+          <div class="cl-n">$13</div>
+          <div class="cl-l">Cheaper per session than the facility's own standard off-peak rate, with rackets included</div>
+          <div class="cl-s">$28.13 standard off-peak split rate vs $25+HST negotiated student rate</div>
+        </div>
+      </div>
+      <div class="stk">
+        <div class="card">
+          <div class="c-eye">Market Rate, Canada · North Padel Club Toronto</div>
+          <div class="cprice d">$40–$120</div>
+          <div class="cdesc">Per court per hour. For 90 mins split 4 ways = $15–$45 per person minimum. Racket rental billed separately.</div>
+        </div>
+        <div class="card">
+          <div class="c-eye">Rookie and Ace Standard Rate · Posted pricing</div>
+          <div class="cprice d">$28–$36</div>
+          <div class="cdesc">Per person for 90 mins, split 4 ways. Off-peak $28.13, peak $35.63. Rackets not included. Still out of reach for a recurring student budget.</div>
+        </div>
+        <div class="card card-k">
+          <div class="c-eye">Negotiated Student Rate · Feb 2026</div>
+          <div class="cprice d">$25+HST</div>
+          <div class="cdesc">Per person for 90 mins. Rackets included. Below their own off-peak rate. The first price point at which padel actually becomes accessible on a student schedule.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 04 INTERVENTION -->
+<section id="solution">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">04 The Intervention</span>
+        <h2 class="s-title d">Not a pitch. <em>A proposal backed by evidence.</em></h2>
+        <p class="b">I approached Derek with the data, not an ask. The proposal solved two problems simultaneously: his utilization gap and the affordability barrier keeping students off the court. The result was a formal written agreement, signed and operational within weeks.</p>
+        <div class="terms">
+          <div class="tr-h">Agreed Terms, Rookie and Ace · Feb 2026</div>
+          <div class="tr-list">
+            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>$25+HST per student</strong> for 90 mins including racket rental. Min 4, max 6 per session.</div></div>
+            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>Available Mon–Fri before 3:30pm</strong>, the exact dead hours identified in the data.</div></div>
+            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>Keyholder access</strong>: first student ever given a key to the facility.</div></div>
+            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>Long-term goal:</strong> UW team competing in tournaments, acknowledged in writing by Derek.</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="steps">
+          <div class="step">
+            <div class="st-n">01</div>
+            <div><div class="st-t">Diagnosed the problem with data</div><div class="st-b">Scraped booking data, mapped the dead hours, interviewed Derek to understand fixed costs. Gave him a specific problem to solve, not a vague feeling.</div></div>
+          </div>
+          <div class="step">
+            <div class="st-n">02</div>
+            <div><div class="st-t">Designed a two-sided solution</div><div class="st-b">Derek needed utilization in dead hours. Students needed an affordable access point. The student rate structure solved both in one move.</div></div>
+          </div>
+          <div class="step">
+            <div class="st-n">03</div>
+            <div><div class="st-t">Took operational ownership</div><div class="st-b">Offered to open and close the facility during those slots personally. Removed Derek's operational risk entirely, guaranteeing sessions run without requiring his presence.</div></div>
+          </div>
+          <div class="step">
+            <div class="st-n">04</div>
+            <div><div class="st-t">Expanded to clubs and university outreach</div><div class="st-b">Coordinating events with multiple university clubs in parallel. Building the demand side wide enough to sustain the partnership, and eventually a UW tournament team.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 05 TRACTION -->
+<section id="traction">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">05 Early Traction</span>
+        <h2 class="s-title d">Under 8 weeks in. <em>The signal is real.</em></h2>
+        <p class="b">This community is 1–2 months old. The numbers are early and presented honestly. What matters at this stage isn't scale. The story is whether the right things are moving in the right direction — and they are.</p>
+        <div class="g2" style="margin-top:var(--sp3);">
+          <div class="stat"><div class="sn">5–10</div><div class="sl">Active players in person</div><div class="ss">Month 1 of operations</div></div>
+          <div class="stat"><div class="sn">↑</div><div class="sl">Group chat growing weekly</div><div class="ss">Primary coordination channel</div></div>
+          <div class="stat"><div class="sn">Multi</div><div class="sl">University club events in progress</div><div class="ss">Demand-side expansion underway</div></div>
+          <div class="stat"><div class="sn">1</div><div class="sl">Student converted to paid club member</div><div class="ss">Strongest early signal of product-market fit</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="tl">
+          <div class="tl-row">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-d">Jan 2026</div>
+              <div class="tl-t">Identified the gap</div>
+              <div class="tl-b">Scraped booking data, identified the dead-hours pattern, interviewed Derek. Confirmed the utilization problem was structural, not seasonal.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-d">Feb 2026</div>
+              <div class="tl-t">Negotiated formal terms</div>
+              <div class="tl-b">Student rate ($25+HST including rackets), keyholder access, formal written agreement. First student ever offered the role.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot act"></div>
+            <div>
+              <div class="tl-d">Feb – Mar 2026 · Now</div>
+              <div class="tl-t">Building the community</div>
+              <div class="tl-b">First players activated. Group chat growing. Club event partnerships in progress. One player converted to paid club member. The loop is working.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot fut"></div>
+            <div>
+              <div class="tl-d fut">2026, Ongoing</div>
+              <div class="tl-t">UW tournament team and self-sustaining community</div>
+              <div class="tl-b">Goal endorsed by Derek in writing: a UW team competing in tournaments. Building infrastructure that outlasts my time at Waterloo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 06 WHY NOW -->
+<section id="whynow">
+  <div class="wrap">
+
+    <!-- Header row -->
+    <div class="cols" style="margin-bottom:var(--sp4);">
+      <div>
+        <span class="s-num">06 Why Now</span>
+        <h2 class="s-title d">Canada is at the <em>bottom of the curve.</em> That's the window.</h2>
+      </div>
+      <div>
+        <p class="b">Every sport that goes global follows the same adoption arc. Spain and Italy are mature. The US is mid-curve. Canada is just starting. The window to build community infrastructure before the rush is open right now — and it won't stay open long.</p>
+      </div>
+    </div>
+
+    <!-- S-curve: full width -->
+    <div class="cv-dk" style="border-radius:var(--r);padding:var(--sp4);">
+      <div class="cv-cap" style="color:rgba(255,255,255,.35);margin-bottom:var(--sp4);">Padel Adoption Curve, Global Markets</div>
+      <canvas id="scurve" width="1100" height="340"></canvas>
+      <div class="cv-leg">
+        <div class="cv-li"><div class="cv-ld" style="background:rgba(255,255,255,.3)"></div>Mature</div>
+        <div class="cv-li"><div class="cv-ld" style="background:#ffd93d"></div>Growth phase</div>
+        <div class="cv-li"><div class="cv-ld" style="background:var(--green)"></div>Early stage</div>
+      </div>
+    </div>
+    <div class="cv-note" style="margin-top:var(--sp1);margin-bottom:var(--sp4);"><strong>Spain took ~15 years</strong> to reach padel saturation. The US compressed to under 5 years. Canada's compression will be faster. The time to build community infrastructure is now, not later.</div>
+
+    <!-- Network + insight cards: 2-col -->
+    <div class="cols">
+      <div>
+        <div class="cv-lt" style="border-radius:var(--r);padding:var(--sp3);background:var(--grey-light);border:1px solid var(--border);">
+          <div class="cv-cap" style="color:var(--grey);margin-bottom:var(--sp3);">How the Community Compounds, Word of Mouth Model</div>
+          <canvas id="network" width="480" height="280"></canvas>
+        </div>
+        <div class="cv-note" style="margin-top:var(--sp1);"><strong>Padel is structurally viral.</strong> The game requires 4 players. Every new player is incentivised to recruit 3 others. Word of mouth isn't just a strategy here. It's how the sport works.</div>
+      </div>
+      <div class="stk">
+        <div class="card">
+          <div class="c-eye">Network effect</div>
+          <div class="c-head d">Format forces social growth</div>
+          <div class="c-body">Padel is always played in groups of 4. Every player needs 3 others. The sport's format makes organic growth the default — it's structurally viral by design.</div>
+        </div>
+        <div class="card card-t">
+          <div class="c-eye">Revenue signal</div>
+          <div class="c-head d">1 student already converted to a paid club member</div>
+          <div class="c-body">Showed up through word of mouth, decided the sport was worth a recurring membership. That's direct revenue for Derek that only exists because of this community.</div>
+        </div>
+        <div class="card">
+          <div class="c-eye">Market timing</div>
+          <div class="c-head d">Canada is 2–3 years behind the US curve</div>
+          <div class="c-body">The US went from ~200 to 688 courts in under 3 years. Canada consistently follows with a short lag. The infrastructure window is open — and closing.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════ 07 PIPELINE — DARK CHAPTER -->
+<section id="pipeline" class="sec-dark">
+  <div class="wrap">
+    <div class="cols-wide">
+      <div>
+        <span class="s-num">07 Growth Pipeline</span>
+        <h2 class="s-title d">How the community is <em>actually growing</em> right now.</h2>
+        <p class="b">No ads. No budget. Just word of mouth — and it's working. The pipeline is simple by design: bring people who've never played, let the sport convert them, watch the network compound. The funnel isn't a strategy. It's what's already happening.</p>
+        <div class="g2" style="margin-top:var(--sp4);">
+          <div class="card card-k">
+            <div class="c-eye">Why padel converts</div>
+            <div class="c-body">Easy to learn, immediately fun. Within one session most players are hooked. The sport does the selling — you just have to show up with the right people.</div>
+          </div>
+          <div class="card card-k">
+            <div class="c-eye">The long-term business case</div>
+            <div class="c-body">A paid club member generates more recurring value than any number of one-off sessions. This community isn't just filling dead hours. It's building Derek's membership base.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="funnel">
+          <div class="fn-row fn-0">
+            <div>
+              <div class="fn-eye">Entry point</div>
+              <div class="fn-ttl d">Me + my <em>network</em></div>
+            </div>
+            <div class="fn-body">I show up, bring friends who've never played. Padel is easy to learn and immediately fun. The sport does the selling. First session is the hook.</div>
+          </div>
+          <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="fn-row fn-1">
+            <div>
+              <div class="fn-eye">Layer 2</div>
+              <div class="fn-ttl d">Friends of <em>friends</em></div>
+            </div>
+            <div class="fn-body">Players who came once bring someone new the next time. No coordination required. The social nature of padel — always played in groups of 4 — makes organic growth the default.</div>
+          </div>
+          <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="fn-row fn-2">
+            <div>
+              <div class="fn-eye">Layer 3</div>
+              <div class="fn-ttl d">University <em>clubs</em></div>
+            </div>
+            <div>
+              <div class="fn-body">Reached out to university organizations including UW Marketing Club and varsity-adjacent sports clubs to run structured padel events.</div>
+              <div class="fn-tags">
+                <span class="tag">UW Marketing Club</span>
+                <span class="tag">Varsity sports clubs</span>
+                <span class="tag tag-g">More in progress</span>
+              </div>
+            </div>
+          </div>
+          <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="fn-row fn-3">
+            <div>
+              <div class="sig">Key signal</div>
+              <div class="fn-eye">Conversion</div>
+              <div class="fn-ttl d">Paid club <em>member</em></div>
+            </div>
+            <div class="fn-body">One player from the community has already converted to a full paying club member at Rookie and Ace. A student who showed up through word of mouth decided the sport was worth a recurring membership. <strong>That's direct, recurring revenue for Derek that exists entirely because of this community.</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 08 OUTCOME -->
+<section id="outcome">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">08 What Exists Now</span>
+        <h2 class="s-title d">Real change. <em>Eight weeks in.</em></h2>
+        <p class="b">None of this existed before January 2026. The structural pieces are already in place — built without a budget, a team, or anyone asking me to do it.</p>
+        <div class="quote">
+          <div class="q-tx">"I think it would be great to see a U of W team competing amongst the other schools out there playing tournaments."</div>
+          <div class="q-at">Derek, Owner · Rookie and Ace Padel, Kitchener ON · Feb 2026</div>
+        </div>
+        <div class="stk" style="margin-top:var(--sp3);">
+          <div class="card">
+            <div class="c-eye">Business Impact</div>
+            <div class="c-head d">Dead hours generating consistent revenue</div>
+            <div class="c-body">A fixed-cost facility bleeding daytime utilization now has structured sessions running in those slots, coordinated and operated without requiring Derek's time.</div>
+          </div>
+          <div class="card">
+            <div class="c-eye">Community Impact</div>
+            <div class="c-head d">Students accessing a sport they couldn't afford before</div>
+            <div class="c-body">$25+HST including rackets, significantly below the $28–36 standard split rate. Padel went from inaccessible to actually playable on a student budget.</div>
+          </div>
+        </div>
+      </div>
+      <div class="stk">
+        <div class="card card-k">
+          <div class="c-eye">Partnership</div>
+          <div class="c-head d">Keyholder role, first ever offered to a student</div>
+          <div class="c-body">Formal written agreement, keyholder access. A business extending operational trust. Not a favour, not a referral deal. A keyholder role is operational ownership without the title.</div>
+        </div>
+        <div class="card card-k">
+          <div class="c-eye">Long-term Vision</div>
+          <div class="c-head d">UW tournament team in progress. Community built to last.</div>
+          <div class="c-body">Club events in motion, university outreach underway. The goal is a self-sustaining padel community in KW, with a UW team competing regionally — endorsed by Derek in writing.</div>
+        </div>
+        <div class="card card-t">
+          <div class="c-eye">Revenue Signal</div>
+          <div class="c-head d">1 student already converted to a paid club member</div>
+          <div class="c-body">The strongest possible early signal. A student who showed up through word of mouth decided the sport was worth a recurring membership. This is the model working as intended.</div>
+        </div>
+        <div class="card">
+          <div class="c-eye">Operations</div>
+          <div class="c-head d">Fully operational without the facility owner present</div>
+          <div class="c-body">I open, run, and close sessions during dead-hour slots. Derek's operational risk is zero. The agreement scales with trust, not intervention.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 09 REFLECTION -->
+<section id="reflection">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="s-num">09 What I Learned</span>
+        <h2 class="s-title d">The method is the <em>same everywhere.</em></h2>
+        <p class="b">Find the gap between what exists and what should exist. Diagnose it with data. Propose a solution that works for both sides. Take responsibility before you have the title to justify it.</p>
+        <p class="b">That's product thinking: identifying a two-sided problem, building a solution that serves both sides simultaneously, and measuring it against real outcomes. I did it with a booking spreadsheet and a padel racket. The instinct scales.</p>
+        <p class="b">I can't see a broken system and leave it alone. And I don't rely on instinct to diagnose it — I pull the data first, because that's what earns the conversation. That's not something I decided to be. It's just what happens when I look at something long enough.</p>
+      </div>
+      <div class="stk">
+        <div class="card">
+          <div class="c-eye">Pattern 01</div>
+          <div class="c-head d">Data changes the conversation</div>
+          <div class="c-body">I didn't pitch Derek on enthusiasm. I showed him his own numbers in a way he hadn't seen before. That's what made the partnership possible, not the idea itself.</div>
+        </div>
+        <div class="card">
+          <div class="c-eye">Pattern 02</div>
+          <div class="c-head d">I use data to find undervalued segments</div>
+          <div class="c-body">Students were an undervalued segment Derek hadn't priced or marketed toward. That's not just a padel insight — it's the same analytical instinct I applied at TD. The context changes. The method doesn't.</div>
+        </div>
+        <div class="card">
+          <div class="c-eye">Pattern 03</div>
+          <div class="c-head d">Both sides of the market matter</div>
+          <div class="c-body">Solving Derek's utilization gap alone doesn't work if students can't afford to show up. The affordability piece wasn't secondary. It was half the solution.</div>
+        </div>
+        <div class="card card-t">
+          <div class="c-eye">Pattern 04</div>
+          <div class="c-head d">Ownership without permission</div>
+          <div class="c-body">Nobody asked me to fix this. I just couldn't walk past it once I saw it. That's not a personality trait I'm describing. It's a pattern I keep returning to.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="ft-wrap">
+  <footer>
+    <div class="f-brand">Raheil · Wealthsimple Accelerators 2026</div>
+    <div class="f-note">
+      <p>This case study is itself an example of how I work.</p>
+      <p>Built with data, AI, and a padel racket. Still in progress.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* — progress bar — */
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+
+/* — scroll reveal — */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('vis');
+    if(e.target.id==='data')   setTimeout(animBars,300);
+    if(e.target.id==='whynow') setTimeout(()=>{drawCurve();drawNet();},200);
+  });
+},{threshold:.07});
+document.querySelectorAll('section').forEach(s=>io.observe(s));
+
+function animBars(){document.querySelectorAll('.br-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});}
+
+/* — S-curve — */
+function drawCurve(){
+  const c=document.getElementById('scurve');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  const p={t:32,r:32,b:48,l:32};
+  const iW=W-p.l-p.r,iH=H-p.t-p.b;
+  ctx.clearRect(0,0,W,H);
+  const sig=x=>1/(1+Math.exp(-10*(x-.5)));
+  const gx=x=>p.l+x*iW, gy=x=>p.t+iH-sig(x)*iH;
+
+  /* gradient fill */
+  ctx.beginPath();
+  for(let i=0;i<=300;i++) i===0?ctx.moveTo(gx(i/300),gy(i/300)):ctx.lineTo(gx(i/300),gy(i/300));
+  ctx.lineTo(gx(1),p.t+iH);ctx.lineTo(gx(0),p.t+iH);ctx.closePath();
+  const grad=ctx.createLinearGradient(0,p.t,0,p.t+iH);
+  grad.addColorStop(0,'rgba(0,194,122,.18)');grad.addColorStop(1,'rgba(0,194,122,.01)');
+  ctx.fillStyle=grad;ctx.fill();
+
+  /* curve */
+  ctx.beginPath();
+  for(let i=0;i<=300;i++) i===0?ctx.moveTo(gx(i/300),gy(i/300)):ctx.lineTo(gx(i/300),gy(i/300));
+  ctx.strokeStyle='rgba(255,255,255,.28)';ctx.lineWidth=2.5;ctx.stroke();
+
+  /* countries */
+  const pts=[
+    [.84,'Spain',  'rgba(255,255,255,.55)', -22, false],
+    [.75,'Italy',  'rgba(255,255,255,.45)',  22, false],
+    [.64,'UK',     'rgba(255,255,255,.45)', -22, false],
+    [.53,'USA',    '#ffd93d',               -22, false],
+    [.38,'AUS',    '#ffd93d',                22, false],
+    [.21,'Canada', '#00c27a',               -26, true ],
+  ];
+
+  pts.forEach(([xp,lbl,col,yo,hi])=>{
+    const x=gx(xp),y=gy(xp);
+    /* dashed drop line */
+    ctx.save();ctx.setLineDash([3,6]);
+    ctx.beginPath();ctx.moveTo(x,y+8);ctx.lineTo(x,p.t+iH);
+    ctx.strokeStyle=hi?'rgba(0,194,122,.35)':'rgba(255,255,255,.1)';
+    ctx.lineWidth=1;ctx.stroke();ctx.restore();
+
+    /* dot */
+    const r=hi?11:6;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
+    if(hi){
+      ctx.beginPath();ctx.arc(x,y,18,0,Math.PI*2);
+      ctx.strokeStyle='rgba(0,194,122,.3)';ctx.lineWidth=2;ctx.stroke();
+    }
+
+    /* name label */
+    ctx.fillStyle=col;
+    ctx.font=(hi?'600 14px':'13px')+' DM Sans,sans-serif';
+    ctx.textAlign='center';ctx.fillText(lbl,x,y+yo);
+
+    /* "you are here" pill for Canada */
+    if(hi){
+      const tag='← you are here';
+      ctx.font='600 11px DM Sans,sans-serif';
+      const tw=ctx.measureText(tag).width;
+      const tx=x+26,ty=y-4;
+      ctx.fillStyle='rgba(0,194,122,.18)';
+      ctx.beginPath();ctx.roundRect(tx-8,ty-14,tw+16,22,6);ctx.fill();
+      ctx.fillStyle='#00c27a';ctx.textAlign='left';ctx.fillText(tag,tx,ty+3);
+    }
+  });
+
+  /* axis label */
+  ctx.fillStyle='rgba(255,255,255,.22)';ctx.font='12px DM Sans,sans-serif';
+  ctx.textAlign='center';ctx.fillText('Market Maturity →',p.l+iW/2,H-8);
+}
+
+/* — Network — */
+function drawNet(){
+  const c=document.getElementById('network');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  ctx.clearRect(0,0,W,H);
+  const ys=[36,110,185,255];
+  const nodes=[
+    [W/2,ys[0],'You','#00c27a',13],
+    [W/2-100,ys[1],'Friend','rgba(0,194,122,.7)',9],
+    [W/2,ys[1],'Friend','rgba(0,194,122,.7)',9],
+    [W/2+100,ys[1],'Friend','rgba(0,194,122,.7)',9],
+    [W/2-145,ys[2],'','rgba(0,0,0,.1)',6],
+    [W/2-90,ys[2],'','rgba(0,0,0,.1)',6],
+    [W/2-35,ys[2],'','rgba(0,0,0,.1)',6],
+    [W/2+20,ys[2],'','rgba(0,0,0,.1)',6],
+    [W/2+70,ys[2],'','rgba(0,0,0,.1)',6],
+    [W/2+120,ys[2],'','rgba(0,0,0,.1)',6],
+    [W/2-155,ys[3],'Member','#00c27a',9],
+    [W/2-60,ys[3],'','rgba(0,0,0,.08)',5],
+    [W/2+30,ys[3],'','rgba(0,0,0,.08)',5],
+    [W/2+120,ys[3],'Club event','#ffd93d',9],
+  ];
+  [[0,1],[0,2],[0,3],[1,4],[1,5],[2,6],[2,7],[3,8],[3,9],[4,10],[5,11],[7,12],[9,13]].forEach(([a,b])=>{
+    ctx.beginPath();ctx.moveTo(nodes[a][0],nodes[a][1]);ctx.lineTo(nodes[b][0],nodes[b][1]);
+    ctx.strokeStyle='rgba(0,0,0,.07)';ctx.lineWidth=1;ctx.stroke();
+  });
+  nodes.forEach(([x,y,lbl,col,r])=>{
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
+    if(lbl){ctx.fillStyle='#1a1a1a';ctx.font=`${r>=9?'500 10px':'9px'} DM Sans,sans-serif`;ctx.textAlign='center';ctx.fillText(lbl,x,y+r+11);}
+  });
+  ['Seed','Layer 1','Layer 2','Layer 3'].forEach((l,i)=>{
+    ctx.fillStyle='rgba(0,0,0,.18)';ctx.font='9px DM Sans,sans-serif';ctx.textAlign='right';ctx.fillText(l,W-3,ys[i]+4);
+  });
+}
+</script>
+</body>
+</html>
