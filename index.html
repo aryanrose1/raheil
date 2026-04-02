@@ -3,1104 +3,1162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The KW Padel Gap · Raheil</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<title>Focal AI — ICP Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-
-/* ═══════════════════════════════════════
-   TOKENS
-═══════════════════════════════════════ */
-:root {
-  --ink:        #0a0a0a;
-  --ink-mid:    #2a2a2a;
-  --paper:      #fafaf8;
-  --green:      #00c27a;
-  --green-deep: #00935c;
-  --green-tint: #e8faf3;
-  --grey:       #6b6b6b;
-  --grey-light: #f0efed;
-  --border:     #e2e0de;
-
-  --sp1:  8px;
-  --sp2:  16px;
-  --sp3:  24px;
-  --sp4:  32px;
-  --sp5:  48px;
-  --sp6:  48px;
-
-  --r:    12px;
-  --edge: 52px;
-  --gap:  60px;
-  --max:  1260px;
-}
-
-/* ═══════════════════════════════════════
-   RESET
-═══════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+:root{
+  --navy:#0B1929;
+  --navy2:#112240;
+  --navy3:#1a3558;
+  --white:#FFFFFF;
+  --off:#F7F8FA;
+  --paper:#EFF1F5;
+  --border:#DDE1E9;
+  --border2:#C8CDD8;
+  --text:#0B1929;
+  --muted:#546078;
+  --soft:#8A95A8;
+  --teal:#0A7B6B;
+  --teal2:#0D9B87;
+  --teal-lt:#E0F5F2;
+  --teal-mid:#A7E3DC;
+  --teal-dk:#075244;
+  --amber:#C47C18;
+  --amber-lt:#FEF3DC;
+  --amber-mid:#F6C96B;
+  --amber-dk:#7C4A08;
+  --red:#C0392B;
+  --red-lt:#FDECEA;
+  --green:#15803d;
+  --green-lt:#DCFCE7;
+}
+
+html,body{height:100%;overflow:hidden}
 body{
-  background:var(--paper);color:var(--ink);
-  font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.6;
+  color:var(--text);
+  background:var(--white);
   -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
 }
 
-/* ═══════════════════════════════════════
-   SCROLL PROGRESS
-═══════════════════════════════════════ */
-#progress{
-  position:fixed;top:0;left:0;height:3px;width:0%;
-  background:var(--green);z-index:200;
-  transition:width 0.1s linear;
+/* ── HEADER ── */
+.header{
+  background:var(--navy);
+  padding:0 48px;
+  height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.hdr-brand{
+  display:flex;align-items:center;gap:8px;
+  font-family:'Libre Baskerville',serif;
+  font-size:15px;font-weight:700;color:#fff;
+}
+.hdr-dot{width:7px;height:7px;border-radius:50%;background:var(--teal2)}
+.hdr-right{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:rgba(255,255,255,0.3);
+  letter-spacing:.07em;
 }
 
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-/* nav removed — replaced by .mast */
-
-/* ═══════════════════════════════════════
-   BADGE
-═══════════════════════════════════════ */
-.badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--green-tint);border:1px solid rgba(0,194,122,0.28);
-  border-radius:20px;padding:5px 12px;
-  font-size:10px;font-weight:500;color:var(--green-deep);
-  letter-spacing:0.07em;text-transform:uppercase;
+/* ── TABS ── */
+.tabs{
+  display:flex;
+  background:var(--navy2);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  flex-shrink:0;
+  padding:0 48px;
 }
-.bdot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
-
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-/* ═══════════════════════════════════════
-   TYPOGRAPHY
-═══════════════════════════════════════ */
-.d{font-family:'DM Serif Display',serif;line-height:1.05;letter-spacing:-1.5px;}
-.d em{font-style:italic;color:var(--green);}
-
-.s-num{
-  display:block;font-size:10px;font-weight:600;
-  letter-spacing:0.16em;text-transform:uppercase;color:var(--green);
-  margin-bottom:var(--sp3);
+.tab{
+  padding:0 24px;
+  height:44px;
+  display:flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all .2s;
+  user-select:none;
+  white-space:nowrap;
 }
-.s-title{font-size:clamp(24px,2.6vw,38px);margin-bottom:var(--sp3);}
-.b{font-size:15px;line-height:1.8;color:var(--ink-mid);font-weight:300;}
-.b+.b{margin-top:var(--sp2);}
-
-/* ═══════════════════════════════════════
-   LAYOUT SHELL
-   Every section: .wrap inside handles max-width + 2-col
-═══════════════════════════════════════ */
-section{
-  border-bottom:1px solid var(--border);
-  padding:var(--sp5) 0;
+.tab:hover{color:rgba(255,255,255,.65)}
+.tab.active{color:var(--teal2);border-bottom-color:var(--teal2)}
+.tab-num{
+  width:18px;height:18px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.4);
+  transition:all .2s;
 }
-section.sec-dark{background:var(--ink);}
+.tab.active .tab-num{background:var(--teal2);color:#fff}
 
-.wrap{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:0 var(--edge);
+/* ── CONTENT AREA ── */
+.content{
+  flex:1;
+  overflow:hidden;
+  position:relative;
 }
+.panel{
+  position:absolute;
+  inset:0;
+  overflow-y:auto;
+  display:none;
+  padding:36px 48px 48px;
+}
+.panel.active{display:block}
 
-/* Standard 2-col: 44/56 split */
-.cols{
+/* ── SHARED PAGE GRID ── */
+.page-grid{
   display:grid;
-  grid-template-columns:44fr 56fr;
-  gap:var(--gap);
-  align-items:start;
+  grid-template-columns:260px 1fr;
+  gap:0;
+  height:100%;
+  min-height:calc(100vh - 96px);
 }
-/* Narrow left for sections where left is label+title only */
-.cols-wide{
-  display:grid;
-  grid-template-columns:38fr 62fr;
-  gap:var(--gap);
-  align-items:start;
-}
-
-/* ═══════════════════════════════════════
-   CARD SYSTEM — one component, 3 skins
-═══════════════════════════════════════ */
-.card{
-  border:1px solid var(--border);border-radius:var(--r);
-  padding:var(--sp3);
-  transition:border-color .18s,box-shadow .18s,transform .18s;
-}
-.card:hover{
-  border-color:rgba(0,194,122,.4);
-  box-shadow:0 6px 28px rgba(0,194,122,.08);
-  transform:translateY(-2px);
-}
-.card-k{background:var(--ink);border-color:var(--ink);}
-.card-k:hover{border-color:var(--green);}
-.card-t{background:var(--green-tint);border-color:rgba(0,194,122,.2);}
-
-.c-eye{
-  font-size:10px;font-weight:500;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--grey);
-  margin-bottom:var(--sp2);padding-bottom:var(--sp2);
-  border-bottom:1px solid var(--border);
-}
-.card-k .c-eye{color:rgba(255,255,255,.35);border-color:rgba(255,255,255,.08);}
-.card-t .c-eye{color:var(--green-deep);border-color:rgba(0,194,122,.2);}
-
-.c-head{
-  font-family:'DM Serif Display',serif;
-  font-size:19px;letter-spacing:-.3px;line-height:1.2;
-  margin-bottom:var(--sp1);
-}
-.card-k .c-head{color:#fff;}
-
-.c-body{font-size:13px;color:var(--grey);line-height:1.65;font-weight:300;}
-.card-k .c-body{color:rgba(255,255,255,.48);}
-
-.c-src{font-size:10px;color:var(--green-deep);margin-top:var(--sp1);font-style:italic;}
-
-/* grids */
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2);}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2);}
-.stk{display:flex;flex-direction:column;gap:var(--sp2);}
-
-/* ═══════════════════════════════════════
-   CALLOUT
-═══════════════════════════════════════ */
-.callout{
-  background:var(--green-tint);border:1px solid rgba(0,194,122,.2);
-  border-radius:var(--r);padding:var(--sp3);margin-top:var(--sp4);
-}
-.cl-n{
-  font-family:'DM Serif Display',serif;
-  font-size:52px;line-height:1;letter-spacing:-2px;color:var(--green);
-}
-.cl-l{font-size:13px;color:var(--ink-mid);margin-top:6px;font-weight:400;line-height:1.5;}
-.cl-s{font-size:10px;color:var(--grey);margin-top:4px;font-style:italic;}
-
-/* ═══════════════════════════════════════
-   STAT CARD
-═══════════════════════════════════════ */
-.stat{border:1px solid var(--border);border-radius:var(--r);padding:var(--sp3);}
-.sn{
-  font-family:'DM Serif Display',serif;
-  font-size:32px;letter-spacing:-1px;line-height:1;color:var(--green);
-}
-.sl{font-size:12px;color:var(--ink-mid);margin-top:6px;font-weight:400;line-height:1.4;}
-.ss{font-size:10px;color:var(--grey);margin-top:3px;font-style:italic;}
-
-/* ═══════════════════════════════════════
-   CHART BOX
-═══════════════════════════════════════ */
-.ch-box{background:var(--ink);border-radius:var(--r);padding:var(--sp3);}
-.ch-cap{
-  font-size:10px;font-weight:500;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.35);
-  margin-bottom:var(--sp4);
-}
-.br-rows{display:flex;flex-direction:column;gap:12px;}
-.br-row{display:grid;grid-template-columns:104px 1fr 36px;align-items:center;gap:10px;}
-.br-t{font-size:11px;color:rgba(255,255,255,.4);}
-.br-track{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
-.br-fill{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
-.br-fill.lo{background:rgba(255,255,255,.14);}
-.br-fill.md{background:#ffd93d;}
-.br-fill.hi{background:var(--green);}
-.br-p{font-size:10px;color:rgba(255,255,255,.3);text-align:right;}
-.ch-leg{
-  display:flex;gap:14px;flex-wrap:wrap;
-  margin-top:var(--sp3);padding-top:var(--sp3);
-  border-top:1px solid rgba(255,255,255,.07);
-}
-.ch-li{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.35);}
-.ch-ld{width:6px;height:6px;border-radius:50%;}
-
-/* ═══════════════════════════════════════
-   TERMS
-═══════════════════════════════════════ */
-.terms{
-  border:1px solid var(--border);border-radius:var(--r);
-  padding:var(--sp3);margin-top:var(--sp4);
-}
-.tr-h{
-  font-size:10px;font-weight:500;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--grey);
-  margin-bottom:var(--sp3);padding-bottom:var(--sp2);
-  border-bottom:1px solid var(--border);
-}
-.tr-list{display:flex;flex-direction:column;gap:var(--sp2);}
-.tr-row{display:grid;grid-template-columns:12px 1fr;gap:var(--sp2);align-items:start;}
-.tr-dot{width:5px;height:5px;background:var(--green);border-radius:50%;margin-top:9px;}
-.tr-tx{font-size:13px;color:var(--ink-mid);line-height:1.6;font-weight:300;}
-.tr-tx strong{font-weight:500;}
-
-/* ═══════════════════════════════════════
-   STEPS
-═══════════════════════════════════════ */
-.steps{display:flex;flex-direction:column;}
-.step{
-  display:grid;grid-template-columns:32px 1fr;gap:var(--sp3);
-  padding:var(--sp3) 0;border-bottom:1px solid var(--border);
-}
-.step:first-child{padding-top:0;}
-.step:last-child{border-bottom:none;}
-.st-n{font-family:'DM Serif Display',serif;font-size:16px;color:var(--green);padding-top:2px;}
-.st-t{font-size:13px;font-weight:500;margin-bottom:4px;}
-.st-b{font-size:12px;color:var(--grey);line-height:1.6;font-weight:300;}
-
-/* ═══════════════════════════════════════
-   TIMELINE
-═══════════════════════════════════════ */
-.tl{position:relative;}
-.tl::before{
-  content:'';position:absolute;left:17px;top:5px;bottom:5px;
-  width:1px;background:var(--border);
-}
-.tl-row{display:grid;grid-template-columns:34px 1fr;gap:var(--sp2);padding-bottom:var(--sp3);}
-.tl-row:last-child{padding-bottom:0;}
-.tl-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--green);margin-top:5px;
-  position:relative;left:13px;z-index:1;
-}
-.tl-dot.act{box-shadow:0 0 0 4px var(--green-tint);animation:pulse 2s ease-in-out infinite;}
-.tl-dot.fut{background:var(--border);}
-.tl-d{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:3px;}
-.tl-d.fut{color:var(--grey);}
-.tl-t{font-size:13px;font-weight:500;margin-bottom:3px;}
-.tl-b{font-size:12px;color:var(--grey);line-height:1.6;font-weight:300;}
-
-/* ═══════════════════════════════════════
-   CANVAS WRAP
-═══════════════════════════════════════ */
-.cv{border-radius:var(--r);padding:var(--sp3);}
-.cv-dk{background:var(--ink);}
-.cv-lt{background:var(--grey-light);border:1px solid var(--border);}
-.cv-cap{
-  font-size:10px;font-weight:500;letter-spacing:.1em;
-  text-transform:uppercase;margin-bottom:var(--sp3);
-}
-.cv-dk .cv-cap{color:rgba(255,255,255,.35);}
-.cv-lt .cv-cap{color:var(--grey);}
-.cv canvas{width:100%;height:auto;display:block;}
-.cv-note{
-  border-radius:var(--r);padding:var(--sp2) var(--sp3);margin-top:var(--sp1);
-  font-size:12px;line-height:1.65;font-weight:300;color:var(--ink-mid);
-  border:1px solid var(--border);background:var(--grey-light);
-}
-.cv-note strong{font-weight:500;}
-.cv-leg{display:flex;gap:14px;flex-wrap:wrap;margin-top:var(--sp2);padding-top:var(--sp2);border-top:1px solid rgba(255,255,255,.07);}
-.cv-li{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.35);}
-.cv-ld{width:6px;height:6px;border-radius:50%;}
-
-/* ═══════════════════════════════════════
-   FUNNEL (dark section)
-═══════════════════════════════════════ */
-.funnel{border:1px solid rgba(255,255,255,.1);border-radius:var(--r);overflow:hidden;margin-top:var(--sp5);}
-.fn-row{
-  display:grid;grid-template-columns:200px 1fr;
-  gap:var(--sp4);align-items:center;
-  padding:var(--sp3) var(--sp4);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.fn-row:last-child{border-bottom:none;}
-.fn-row.fn-0{background:rgba(255,255,255,.05);}
-.fn-row.fn-1{background:rgba(255,255,255,.03);}
-.fn-row.fn-2{background:rgba(255,255,255,.03);}
-.fn-row.fn-3{background:rgba(0,194,122,.1);border-color:rgba(0,194,122,.2);}
-.fn-arr{
-  display:flex;justify-content:center;align-items:center;height:28px;
-  background:rgba(255,255,255,.03);
-  border-left:1px solid rgba(255,255,255,.06);
-  border-right:1px solid rgba(255,255,255,.06);
-}
-.fn-eye{font-size:9px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;margin-bottom:5px;}
-.fn-0 .fn-eye,.fn-1 .fn-eye,.fn-2 .fn-eye{color:rgba(255,255,255,.3);}
-.fn-3 .fn-eye{color:rgba(0,194,122,.8);}
-.fn-ttl{font-family:'DM Serif Display',serif;font-size:22px;letter-spacing:-.4px;line-height:1.15;color:#fff;}
-.fn-ttl em{font-style:normal;color:var(--green);}
-.fn-body{font-size:13px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.45);}
-.fn-3 .fn-body{color:rgba(255,255,255,.65);}
-.fn-body strong{font-weight:500;color:rgba(255,255,255,.85);}
-.fn-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:var(--sp2);}
-.tag{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:400;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);}
-.tag-g{background:rgba(0,194,122,.15);border-color:rgba(0,194,122,.25);color:var(--green);}
-.sig{
-  display:inline-flex;align-items:center;
-  background:var(--green);color:#fff;
-  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 9px;border-radius:20px;margin-bottom:var(--sp1);
-}
-
-/* dark section type overrides */
-.sec-dark .s-num{color:var(--green);}
-.sec-dark .s-title{color:#fff;}
-.sec-dark .b{color:rgba(255,255,255,.55);}
-
-/* ═══════════════════════════════════════
-   QUOTE
-═══════════════════════════════════════ */
-.quote{
-  margin-top:var(--sp4);
-  border-left:3px solid var(--green);
-  background:var(--green-tint);
-  border-radius:0 var(--r) var(--r) 0;
-  padding:var(--sp3) var(--sp4);
-}
-.q-tx{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.5;font-style:italic;}
-.q-at{font-size:11px;color:var(--grey);margin-top:8px;}
-
-/* ═══════════════════════════════════════
-   COST PRICE
-═══════════════════════════════════════ */
-.cprice{
-  font-family:'DM Serif Display',serif;
-  font-size:34px;letter-spacing:-1px;line-height:1;
-}
-.card-k .cprice{color:var(--green);}
-.cdesc{font-size:12px;color:var(--grey);margin-top:6px;line-height:1.55;font-weight:300;}
-.csrc{font-size:10px;color:var(--grey);margin-top:4px;font-style:italic;opacity:.7;}
-
-/* ═══════════════════════════════════════
-   MASTHEAD — replaces nav + hero + title bar
-═══════════════════════════════════════ */
-.mast{
-  background:var(--ink);
-  padding:var(--sp4) var(--edge) var(--sp5);
-  position:relative;overflow:hidden;
-  border-bottom:1px solid rgba(255,255,255,.07);
-}
-.mast-top{
-  max-width:var(--max);margin:0 auto;
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:var(--sp5);
-}
-.mast-brand{
-  font-family:'DM Serif Display',serif;
-  font-size:15px;color:rgba(255,255,255,.55);letter-spacing:-.1px;
-}
-.mast-r{display:flex;align-items:center;gap:var(--sp2);}
-.mast-tag{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;}
-
-.mast-body{
-  max-width:var(--max);margin:0 auto;
-  display:grid;grid-template-columns:1fr auto;gap:var(--gap);align-items:end;
-}
-.mast-hl{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(36px,4.8vw,68px);
-  line-height:1.04;letter-spacing:-2px;color:#fff;
-  opacity:0;animation:fadeUp .6s ease forwards .15s;
-}
-.mast-hl em{font-style:italic;color:var(--green);}
-.mast-sub{
-  font-size:14px;color:rgba(255,255,255,.42);
-  max-width:520px;margin-top:var(--sp2);
-  font-weight:300;line-height:1.75;
-  opacity:0;animation:fadeUp .6s ease forwards .3s;
-}
-.mast-court{
-  position:absolute;right:0;top:0;bottom:0;
-  opacity:.04;pointer-events:none;
-  display:flex;align-items:center;
-}
-
-/* KPI strip below masthead */
-.kpi-strip{
-  background:var(--grey-light);
-  border-bottom:1px solid var(--border);
-}
-.kpi-inner{
-  max-width:var(--max);margin:0 auto;
-  padding:0 var(--edge);
-  display:grid;grid-template-columns:repeat(4,1fr);
-}
-.kpi-cell{
-  padding:var(--sp3) var(--sp4);
+.pg-left{
+  padding:0 32px 0 0;
   border-right:1px solid var(--border);
+  display:flex;flex-direction:column;gap:24px;
 }
-.kpi-cell:last-child{border-right:none;}
-.kn{
-  font-family:'DM Serif Display',serif;
-  font-size:30px;letter-spacing:-1px;line-height:1;color:var(--green);
-}
-.kl{font-size:12px;color:var(--grey);margin-top:5px;font-weight:400;line-height:1.4;}
-
-/* ═══════════════════════════════════════
-   TICKER STRIP
-═══════════════════════════════════════ */
-.ticker{
-  background:var(--ink);overflow:hidden;
-  padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);
-  opacity:0;animation:fadeUp .5s ease forwards .8s;
-}
-.ticker-track{
-  display:flex;gap:var(--sp5);white-space:nowrap;
-  animation:marquee 28s linear infinite;
-}
-.ticker-track:hover{animation-play-state:paused;}
-.tk-item{
-  display:flex;align-items:center;gap:var(--sp2);
-  font-size:11px;color:rgba(255,255,255,.45);font-weight:400;
-}
-.tk-dot{width:4px;height:4px;background:var(--green);border-radius:50%;flex-shrink:0;}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer{
-  padding:var(--sp5) var(--edge);max-width:var(--max);margin:0 auto;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.ft-wrap{border-top:1px solid var(--border);}
-.ft-wrap footer{margin:0;max-width:none;padding:var(--sp4) var(--edge);}
-.f-brand{font-family:'DM Serif Display',serif;font-size:16px;}
-.f-note{text-align:right;}
-.f-note p{font-size:11px;color:var(--grey);line-height:1.7;}
-
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
-@media(max-width:860px){
-  :root{--edge:24px;--gap:28px;}
-  .cols,.cols-wide{grid-template-columns:1fr;}
-  .g3,.g2{grid-template-columns:1fr;}
-  .kpi-inner{grid-template-columns:1fr 1fr;}
-  .kpi-cell{border-right:none;border-bottom:1px solid var(--border);}
-  .fn-row{grid-template-columns:1fr;}
-  footer{flex-direction:column;gap:var(--sp2);}
-  .f-note{text-align:center;}
-  .mast-court{display:none;}
-  .mast-body{grid-template-columns:1fr;}
+.pg-right{
+  padding:0 0 0 32px;
+  display:flex;flex-direction:column;gap:20px;
 }
 
+/* ── TYPOGRAPHY ── */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:10px;
+}
+.ey-teal{color:var(--teal)}
+.ey-teal::after{content:'';width:20px;height:1px;background:var(--teal);opacity:.6}
+.ey-amber{color:var(--amber)}
+.ey-amber::after{content:'';width:20px;height:1px;background:var(--amber);opacity:.6}
+.ey-navy{color:var(--navy3)}
+.ey-navy::after{content:'';width:20px;height:1px;background:var(--navy3);opacity:.6}
+
+.page-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(22px,2.4vw,30px);
+  font-weight:700;
+  line-height:1.1;
+  letter-spacing:-.015em;
+  color:var(--navy);
+}
+.page-title em{font-style:italic}
+.page-title.teal em{color:var(--teal)}
+.page-title.amber em{color:var(--amber)}
+
+.page-desc{
+  font-size:13px;
+  line-height:1.72;
+  color:var(--muted);
+  margin-top:10px;
+}
+
+.sec-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--soft);margin-bottom:12px;
+}
+
+/* ── DIMENSION CARD ── */
+.dim{
+  padding:16px 18px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:6px;
+}
+.dim+.dim{margin-top:8px}
+.dim-top{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:6px;
+}
+.dim-title{font-size:13px;font-weight:700;color:var(--navy)}
+.dim-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;padding:2px 7px;border-radius:2px;
+  font-weight:500;letter-spacing:.05em;white-space:nowrap;
+}
+.dt-teal{background:var(--teal-lt);color:var(--teal-dk)}
+.dt-amber{background:var(--amber-lt);color:var(--amber-dk)}
+.dt-navy{background:var(--paper);color:var(--navy3)}
+.dim-body{font-size:12.5px;color:var(--muted);line-height:1.62}
+
+/* ── TIER TABLE ── */
+.tier-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.tier-table th{
+  padding:9px 14px;text-align:left;
+  background:var(--navy);
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);font-weight:500;
+}
+.tier-table td{
+  padding:11px 14px;font-size:12.5px;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;line-height:1.55;
+  background:var(--white);
+}
+.tier-table tr:last-child td{border-bottom:none}
+.tier-table td:first-child{font-weight:600;color:var(--navy);width:110px}
+.tier-t1{background:var(--teal-lt)!important}
+.tier-t1 td:first-child{color:var(--teal-dk)!important}
+.tier-t2{background:var(--amber-lt)!important}
+.tier-t2 td:first-child{color:var(--amber-dk)!important}
+.tier-t3{background:var(--red-lt)!important}
+.tier-t3 td:first-child{color:var(--red)!important}
+
+/* ── SIGNAL CHIPS ── */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.chip{
+  padding:4px 10px;border-radius:20px;
+  font-size:12px;font-weight:500;
+  border:1px solid;
+}
+.chip-teal{background:var(--teal-lt);color:var(--teal-dk);border-color:var(--teal-mid)}
+.chip-amber{background:var(--amber-lt);color:var(--amber-dk);border-color:var(--amber-mid)}
+.chip-navy{background:var(--paper);color:var(--navy3);border-color:var(--border2)}
+
+/* ── ICP DEFINITION BOX ── */
+.icp-box{
+  border-radius:8px;
+  padding:20px 22px;
+  border:1px solid;
+}
+.icp-box-teal{background:var(--teal-lt);border-color:var(--teal-mid)}
+.icp-box-amber{background:var(--amber-lt);border-color:var(--amber-mid)}
+.icp-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:6px;font-weight:500;
+}
+.icp-box-teal .icp-label{color:var(--teal-dk)}
+.icp-box-amber .icp-label{color:var(--amber-dk)}
+.icp-name{
+  font-family:'Libre Baskerville',serif;
+  font-size:18px;font-weight:700;
+  margin-bottom:8px;line-height:1.1;
+}
+.icp-box-teal .icp-name{color:var(--teal-dk)}
+.icp-box-amber .icp-name{color:var(--amber-dk)}
+.icp-def{font-size:13px;line-height:1.68;margin-bottom:12px}
+.icp-box-teal .icp-def{color:var(--teal-dk)}
+.icp-box-amber .icp-def{color:var(--amber-dk)}
+.icp-row{display:flex;gap:6px;flex-wrap:wrap}
+
+/* ── SUMMARY STAT ── */
+.left-stat{padding:16px 18px;border:1px solid var(--border);border-radius:6px;background:var(--off)}
+.ls-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+.ls-val{font-family:'Libre Baskerville',serif;font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.ls-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+
+/* ── ACQUISITION FRAMEWORK STYLES ── */
+.acq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.acq-card{
+  padding:18px 20px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:6px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.acq-card-title{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+.acq-num{
+  width:22px;height:22px;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  flex-shrink:0;
+}
+.an-teal{background:var(--teal-lt);color:var(--teal-dk)}
+.an-amber{background:var(--amber-lt);color:var(--amber-dk)}
+.acq-body{font-size:12.5px;color:var(--muted);line-height:1.62}
+.acq-why{
+  padding:7px 10px;border-radius:4px;
+  font-size:11.5px;font-weight:600;line-height:1.5;
+  margin-top:2px;
+}
+.aw-teal{background:var(--teal-lt);color:var(--teal-dk)}
+.aw-amber{background:var(--amber-lt);color:var(--amber-dk)}
+
+/* ── PIPELINE STAGES ── */
+.pipeline{display:flex;flex-direction:column;gap:0}
+.ps{display:grid;grid-template-columns:28px 1fr;align-items:stretch}
+.ps-left{display:flex;flex-direction:column;align-items:center}
+.ps-num{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  flex-shrink:0;
+}
+.pn-teal{background:var(--teal2);color:#fff}
+.pn-teal-ring{background:var(--teal-lt);color:var(--teal-dk);border:1.5px solid var(--teal-mid)}
+.pn-amber{background:var(--amber);color:#fff}
+.pn-amber-ring{background:var(--amber-lt);color:var(--amber-dk);border:1.5px solid var(--amber-mid)}
+.ps-line{width:1px;flex:1;margin:0 auto;min-height:8px}
+.pl-teal{background:var(--teal-mid)}
+.pl-amber{background:var(--amber-mid)}
+.ps-body{padding:1px 0 16px 12px}
+.ps:last-child .ps-body{padding-bottom:0}
+.ps-stage{font-size:13px;font-weight:700;margin-bottom:2px}
+.ps-teal .ps-stage{color:var(--teal-dk)}
+.ps-amber .ps-stage{color:var(--amber-dk)}
+.ps-desc{font-size:12px;color:var(--muted);line-height:1.55}
+.ps-exit{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:4px;padding:3px 8px;border-radius:3px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+}
+.pe-teal{background:var(--teal-lt);color:var(--teal-dk)}
+.pe-amber{background:var(--amber-lt);color:var(--amber-dk)}
+
+/* ── METRIC ROW ── */
+.metric-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:6px;
+}
+.metric-row+.metric-row{margin-top:8px}
+.mr-n{
+  font-family:'Libre Baskerville',serif;
+  font-size:22px;font-weight:700;line-height:1;
+  flex-shrink:0;width:56px;text-align:right;
+}
+.mr-teal{color:var(--teal)}
+.mr-amber{color:var(--amber)}
+.mr-title{font-size:12.5px;font-weight:700;margin-bottom:2px;color:var(--navy)}
+.mr-desc{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* ── OBJECTION ROW ── */
+.obj-row{
+  border:1px solid var(--border);
+  border-radius:6px;overflow:hidden;
+}
+.obj-row+.obj-row{margin-top:8px}
+.obj-q{
+  padding:10px 14px;
+  font-size:13px;font-weight:600;color:#fff;
+  display:flex;gap:8px;align-items:flex-start;
+  background:var(--navy2);
+}
+.oq-mark{font-family:'Libre Baskerville',serif;font-size:18px;line-height:1;flex-shrink:0;margin-top:-1px}
+.ot-teal{color:var(--teal2)}
+.ot-amber{color:var(--amber-mid)}
+.obj-a{padding:10px 14px;font-size:12.5px;color:var(--muted);line-height:1.65;background:var(--white)}
+.obj-a strong{color:var(--navy);font-weight:700}
+
+/* ── DIVIDER ── */
+.rule{height:1px;background:var(--border);margin:4px 0}
+
+/* ── SCROLLBAR STYLING ── */
+.panel::-webkit-scrollbar{width:4px}
+.panel::-webkit-scrollbar-track{background:transparent}
+.panel::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════ MASTHEAD -->
-<div class="mast">
-  <div class="mast-court">
-    <svg width="260" height="420" viewBox="0 0 200 330" fill="none">
-      <rect x="8" y="8" width="184" height="314" stroke="#00c27a" stroke-width="1.5"/>
-      <line x1="8" y1="165" x2="192" y2="165" stroke="#00c27a" stroke-width="2.5"/>
-      <line x1="8" y1="100" x2="192" y2="100" stroke="#00c27a" stroke-width="1"/>
-      <line x1="8" y1="230" x2="192" y2="230" stroke="#00c27a" stroke-width="1"/>
-      <line x1="100" y1="8" x2="100" y2="100" stroke="#00c27a" stroke-width="1"/>
-      <line x1="100" y1="230" x2="100" y2="322" stroke="#00c27a" stroke-width="1"/>
-      <circle cx="100" cy="165" r="3" fill="#00c27a"/>
-    </svg>
+<div class="header">
+  <div class="hdr-brand"><div class="hdr-dot"></div>Focal AI</div>
+  <div class="hdr-right">ICP Framework — Canada GTM · For Steven Miller</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">
+    <span class="tab-num">1</span>ICP Framework
   </div>
-  <div class="mast-top">
-    <div class="mast-brand">A case study in identifying a gap in the market</div>
-    <div class="mast-r">
-      <span class="mast-tag">Wealthsimple Accelerators 2026</span>
-      <span class="badge"><span class="bdot"></span>Live</span>
+  <div class="tab" onclick="switchTab(1)">
+    <span class="tab-num">2</span>ICP 1 — The Stretched Solo
+  </div>
+  <div class="tab" onclick="switchTab(2)">
+    <span class="tab-num">3</span>ICP 2 — The Growing Team
+  </div>
+  <div class="tab" onclick="switchTab(3)">
+    <span class="tab-num">4</span>Demo Pitch — Gold Seal
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════ TAB 1: ICP FRAMEWORK ═══════════════════════════════════ -->
+<div class="panel active" id="panel-0">
+  <div class="page-grid">
+
+    <!-- LEFT -->
+    <div class="pg-left">
+      <div>
+        <div class="eyebrow ey-teal">ICP Framework</div>
+        <div class="page-title teal">Who we target<br>in Canada —<br><em>and why.</em></div>
+        <div class="page-desc">An ICP (Ideal Customer Profile) is a precise description of the customer most likely to buy, derive value from, and stay. Not everyone who could benefit — the specific profile where pain is highest, the purchase decision is fastest, and the product delivers the most obvious value.</div>
+      </div>
+
+      <div>
+        <div class="sec-label">The two profiles</div>
+        <div class="icp-box icp-box-teal" style="margin-bottom:10px">
+          <div class="icp-label">ICP 1</div>
+          <div class="icp-name">The Stretched Solo</div>
+          <div class="icp-def">A solo independent advisor carrying a heavy client book with no support staff, doing all admin personally. The pain is entirely their own. The decision is entirely theirs.</div>
+          <div class="icp-row">
+            <span class="chip chip-teal">Fast close</span>
+            <span class="chip chip-teal">14-day cycle</span>
+            <span class="chip chip-teal">Single buyer</span>
+          </div>
+        </div>
+        <div class="icp-box icp-box-amber">
+          <div class="icp-label">ICP 2</div>
+          <div class="icp-name">The Growing Team</div>
+          <div class="icp-def">A named advisory practice of 2–5 advisors that has recently grown, with inconsistent documentation across the team. Two buyers — the managing partner and the associates — who care about different things.</div>
+          <div class="icp-row">
+            <span class="chip chip-amber">Higher ACV</span>
+            <span class="chip chip-amber">21–30 day cycle</span>
+            <span class="chip chip-amber">Multi-buyer</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ls-label">Total immediately addressable</div>
+        <div class="ls-val" style="color:var(--teal)">~1,600</div>
+        <div class="ls-sub">Advisors at IPC + Assante where Focal is pre-approved</div>
+      </div>
     </div>
-  </div>
-  <div class="mast-body">
-    <div>
-      <h1 class="mast-hl">The data showed a gap.<br><em>I built the product to fill it.</em></h1>
-      <p class="mast-sub">A case study in finding an underserved segment, diagnosing it with data, and building an access product from scratch. 8 weeks. No budget.</p>
+
+    <!-- RIGHT -->
+    <div class="pg-right">
+
+      <!-- DIMENSION 1 -->
+      <div>
+        <div class="sec-label">Dimension 1 — Network / firm type</div>
+        <table class="tier-table">
+          <thead><tr><th>Tier</th><th>Network</th><th>Why it matters</th><th>Accessibility</th></tr></thead>
+          <tbody>
+            <tr class="tier-t1">
+              <td>Tier 1</td>
+              <td>IPC, Assante</td>
+              <td>Named existing users — established network credibility. Advisor makes the buying decision independently.</td>
+              <td>Immediate</td>
+            </tr>
+            <tr class="tier-t2">
+              <td>Tier 2</td>
+              <td>Wellington-Altus, Raymond James Canada, Mandeville</td>
+              <td>Tech-forward culture. Advisors have meaningful purchasing autonomy. One compliance step to clear.</td>
+              <td>Near-term</td>
+            </tr>
+            <tr class="tier-t3">
+              <td>Tier 3</td>
+              <td>RBC, TD, BMO, CIBC</td>
+              <td>Bank employees. No purchasing autonomy. 12–24 month enterprise cycle. Not the ICP now.</td>
+              <td>Phase 3 only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DIMENSION 2 -->
+      <div>
+        <div class="sec-label">Dimension 2 — Practice structure</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="dim">
+            <div class="dim-top">
+              <div class="dim-title">Solo advisor</div>
+              <span class="dim-tag dt-teal">ICP 1</span>
+            </div>
+            <div class="dim-body">1 advisor · 100–250 clients · no support staff · absorbs all admin personally · 5+ years in industry with an established book.</div>
+          </div>
+          <div class="dim">
+            <div class="dim-top">
+              <div class="dim-title">Advisory team</div>
+              <span class="dim-tag dt-amber">ICP 2</span>
+            </div>
+            <div class="dim-body">2–5 advisors · named practice · at least one advisor added in last 18 months · managing partner approves, associates use.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIMENSION 3 -->
+      <div>
+        <div class="sec-label">Dimension 3 — Client complexity (pain amplifier)</div>
+        <div class="dim">
+          <div class="dim-top">
+            <div class="dim-title">Higher complexity = higher pain = higher urgency to buy</div>
+            <span class="dim-tag dt-teal">Target this profile</span>
+          </div>
+          <div class="dim-body" style="margin-bottom:8px">HNW clients, cross-border, estate planning, business owners, multi-generational families — sessions run 60–90 minutes with complex compliance trails. Every meeting creates a documentation mountain.</div>
+          <div class="dim-body"><strong style="color:var(--navy)">Lower priority:</strong> Retail investors, simple RRSP/TFSA conversations. Shorter sessions, lighter documentation, weaker urgency. Still viable but not the first call.</div>
+        </div>
+      </div>
+
+      <!-- DIMENSION 4 -->
+      <div>
+        <div class="sec-label">Dimension 4 — Behavioural signals (who is ready right now)</div>
+        <div class="dim">
+          <div class="dim-top">
+            <div class="dim-title">These signals separate a good ICP match from a ready one</div>
+            <span class="dim-tag dt-navy">Prioritisation layer</span>
+          </div>
+          <div class="dim-body" style="margin-bottom:10px">Anyone can match dimensions 1–3. Behavioural signals tell us who to contact first.</div>
+          <div class="chips">
+            <span class="chip chip-teal">Posts on LinkedIn about client service or efficiency</span>
+            <span class="chip chip-teal">Recently added a team member</span>
+            <span class="chip chip-teal">Won an industry award in past 12 months</span>
+            <span class="chip chip-teal">150+ clients on their book</span>
+            <span class="chip chip-teal">No current AI tool adoption visible</span>
+            <span class="chip chip-teal">Active on LinkedIn (posts, comments, likes)</span>
+            <span class="chip chip-navy">Cross-border or HNW specialisation listed on profile</span>
+            <span class="chip chip-navy">Credentials: CFP, CFA, CIM, FCSI</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
-<!-- KPI STRIP -->
-<div class="kpi-strip">
-  <div class="kpi-inner">
-    <div class="kpi-cell">
-      <div class="kn">~55%</div>
-      <div class="kl">Of daily court hours empty before intervention</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kn">$25</div>
-      <div class="kl">Per student per session, rackets included</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kn">&lt;8 wks</div>
-      <div class="kl">First conversation to formal written partnership</div>
-    </div>
-    <div class="kpi-cell">
-      <div class="kn">1st</div>
-      <div class="kl">Student ever given a keyholder role at this facility</div>
-    </div>
-  </div>
-</div>
+<!-- ═══════════════════════════════════ TAB 2: ICP 1 ═══════════════════════════════════ -->
+<div class="panel" id="panel-1">
+  <div class="page-grid">
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="tk-item"><span class="tk-dot"></span>35M+ padel players worldwide</span>
-    <span class="tk-item"><span class="tk-dot"></span>77,300 courts globally as of 2025</span>
-    <span class="tk-item"><span class="tk-dot"></span>World's fastest growing sport</span>
-    <span class="tk-item"><span class="tk-dot"></span>One court in all of KW</span>
-    <span class="tk-item"><span class="tk-dot"></span>Canadian clubs typically 35–50% utilized</span>
-    <span class="tk-item"><span class="tk-dot"></span>Rookie and Ace: below benchmark, concentrated evenings</span>
-    <span class="tk-item"><span class="tk-dot"></span>$25+HST per session, rackets included</span>
-    <span class="tk-item"><span class="tk-dot"></span>1 student already converted to paid club member</span>
-    <span class="tk-item"><span class="tk-dot"></span>35M+ padel players worldwide</span>
-    <span class="tk-item"><span class="tk-dot"></span>77,300 courts globally as of 2025</span>
-    <span class="tk-item"><span class="tk-dot"></span>World's fastest growing sport</span>
-    <span class="tk-item"><span class="tk-dot"></span>One court in all of KW</span>
-    <span class="tk-item"><span class="tk-dot"></span>Canadian clubs typically 35–50% utilized</span>
-    <span class="tk-item"><span class="tk-dot"></span>Rookie and Ace: below benchmark, concentrated evenings</span>
-    <span class="tk-item"><span class="tk-dot"></span>$25+HST per session, rackets included</span>
-    <span class="tk-item"><span class="tk-dot"></span>1 student already converted to paid club member</span>
-  </div>
-</div>
-
-<!-- ══════════════════════════ 01 CONTEXT -->
-<section id="context">
-  <div class="wrap">
-    <div class="cols">
+    <!-- LEFT -->
+    <div class="pg-left">
       <div>
-        <span class="s-num">01 Context</span>
-        <h2 class="s-title d">The world's fastest growing sport. <em>Barely here.</em></h2>
-        <p class="b">Padel is the world's fastest growing sport. Growing up in Dubai, I watched it take over. When I arrived in Canada, padel was barely here. But the few places that had courts were completely booked out. The demand signal was obvious. Supply was the constraint, not interest.</p>
-        <p class="b">In Kitchener-Waterloo: one facility, one court, one owner. No student presence. Nobody had tried to build the demand side. That gap is what I went looking for.</p>
+        <div class="eyebrow ey-teal">ICP 1 — Acquisition Framework</div>
+        <div class="page-title teal">The Stretched<br><em>Solo Advisor</em></div>
+        <div class="page-desc">A solo independent advisor at IPC or Assante carrying 150–250 clients with no support staff. Every note, every follow-up email, every CRM update lands on their desk personally. The pain is acute and the decision to fix it is entirely theirs.</div>
       </div>
-      <div class="stk">
-        <div class="card">
-          <div class="c-eye">Global Growth · FIP World Padel Report 2025</div>
-          <div class="c-head d">35M+ players worldwide</div>
-          <div class="c-body">77,300 courts as of mid-2025, up from ~40,000 in 2022. The pace of club openings accelerated 26% in 2024 alone. Canada is an emerging market still in its early innings.</div>
+
+      <div>
+        <div class="sec-label">Profile at a glance</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="left-stat">
+            <div class="ls-label">Target network</div>
+            <div class="ls-val" style="color:var(--teal);font-size:17px;margin-top:2px">IPC + Assante</div>
+            <div class="ls-sub">Named existing users — strong referral access within each network</div>
+          </div>
+          <div class="left-stat">
+            <div class="ls-label">Client book</div>
+            <div class="ls-val" style="color:var(--teal)">150–250</div>
+            <div class="ls-sub">Clients managed entirely by one advisor</div>
+          </div>
+          <div class="left-stat">
+            <div class="ls-label">Target cycle</div>
+            <div class="ls-val" style="color:var(--teal)">&lt;14 days</div>
+            <div class="ls-sub">Single decision-maker accelerates close</div>
+          </div>
+          <div class="left-stat">
+            <div class="ls-label">Pricing</div>
+            <div class="ls-val" style="color:var(--teal);font-size:18px;margin-top:2px">Per seat</div>
+            <div class="ls-sub">Monthly or annual — validated at discovery</div>
+          </div>
         </div>
-        <div class="card">
-          <div class="c-eye">North America · Padel United Sports Club, 2025</div>
-          <div class="c-head d">US: 200 to 688 courts in 3 years</div>
-          <div class="c-body">The US adoption curve compressed faster than any other market. Canada is behind, but consistently follows the US curve with a 2–3 year lag. The rush is coming.</div>
-        </div>
-        <div class="card card-t">
-          <div class="c-eye">Kitchener-Waterloo · Direct observation</div>
-          <div class="c-head d">One court. One owner. Zero student community.</div>
-          <div class="c-body">Rookie and Ace: single-court, owner-operated. The only padel option in the region. Sitting mostly empty during the day. No student pricing. No demand-side strategy. A clear opening.</div>
+      </div>
+
+      <div>
+        <div class="sec-label">Why they buy</div>
+        <div class="dim">
+          <div class="dim-body">They are their own bottleneck. Every hour spent on admin is an hour not spent with a client or acquiring new ones. The pain is personal, immediate, and visible in their own calendar every week. There is no one else to blame and no one else to convince.</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════ 02 DATA -->
-<section id="data">
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <span class="s-num">02 The Data</span>
-        <h2 class="s-title d">I scraped their booking data. The gap was <em>hiding in plain sight.</em></h2>
-        <p class="b">Rather than assume, I pulled booking data directly from Rookie and Ace's reservation system. The pattern was immediate: courts sat near-empty every weekday before 3:30pm: a multi-hour window of dead time on a fixed-cost asset.</p>
-        <p class="b">I also interviewed Derek directly to understand the cost structure. Well-managed Canadian clubs typically run at 35–50% utilization. Rookie and Ace was below that benchmark, concentrated entirely in the evening.</p>
-        <div class="callout">
-          <div class="cl-n">~55%</div>
-          <div class="cl-l">Of daily operating hours generating near-zero revenue before intervention</div>
-          <div class="cl-s">HKC Construction, Canadian Padel Club Analysis 2025 · 35–50% typical utilization benchmark</div>
-        </div>
-      </div>
-      <div>
-        <div class="ch-box">
-          <div class="ch-cap">Court Utilization by Time Slot, Pre-Intervention</div>
-          <div class="br-rows">
-            <div class="br-row"><div class="br-t">8:00 – 10:00</div><div class="br-track"><div class="br-fill lo" data-w="6"></div></div><div class="br-p">~6%</div></div>
-            <div class="br-row"><div class="br-t">10:00 – 12:00</div><div class="br-track"><div class="br-fill lo" data-w="5"></div></div><div class="br-p">~5%</div></div>
-            <div class="br-row"><div class="br-t">12:00 – 14:00</div><div class="br-track"><div class="br-fill lo" data-w="8"></div></div><div class="br-p">~8%</div></div>
-            <div class="br-row"><div class="br-t">14:00 – 15:30</div><div class="br-track"><div class="br-fill lo" data-w="10"></div></div><div class="br-p">~10%</div></div>
-            <div class="br-row"><div class="br-t">15:30 – 17:30</div><div class="br-track"><div class="br-fill md" data-w="45"></div></div><div class="br-p">~45%</div></div>
-            <div class="br-row"><div class="br-t">17:30 – 20:00</div><div class="br-track"><div class="br-fill hi" data-w="82"></div></div><div class="br-p">~82%</div></div>
-            <div class="br-row"><div class="br-t">20:00 – 22:00</div><div class="br-track"><div class="br-fill hi" data-w="91"></div></div><div class="br-p">~91%</div></div>
-          </div>
-          <div class="ch-leg">
-            <div class="ch-li"><div class="ch-ld" style="background:rgba(255,255,255,.14)"></div>Near empty</div>
-            <div class="ch-li"><div class="ch-ld" style="background:#ffd93d"></div>Partial</div>
-            <div class="ch-li"><div class="ch-ld" style="background:var(--green)"></div>High demand</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- RIGHT -->
+    <div class="pg-right">
 
-<!-- ══════════════════════════ 03 AFFORDABILITY -->
-<section id="cost">
-  <div class="wrap">
-    <div class="cols">
+      <!-- FINDING THEM -->
       <div>
-        <span class="s-num">03 Affordability Problem</span>
-        <h2 class="s-title d">Padel is an <em>expensive sport.</em> That's half the problem.</h2>
-        <p class="b">Even if courts were available during the day, students couldn't afford the market rate. The solution had to fix both sides: unlock the supply and lower the price point. One without the other doesn't work.</p>
-        <p class="b">The negotiated student rate ($25+HST including rackets) ended up cheaper than Rookie and Ace's own off-peak split rate, equipment included. That's the structural unlock.</p>
-        <div class="callout">
-          <div class="cl-n">$13</div>
-          <div class="cl-l">Cheaper per session than the facility's own standard off-peak rate, with rackets included</div>
-          <div class="cl-s">$28.13 standard off-peak split rate vs $25+HST negotiated student rate</div>
+        <div class="sec-label">How we find them</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-teal">1</div>Public directories</div>
+            <div class="acq-body">IPC and Assante both publish public advisor locators on their websites. Filter by province — Ontario and BC first for highest density. Pull every solo advisor name and cross-reference on LinkedIn.</div>
+            <div class="acq-why aw-teal">Why: Zero cost, immediately available, 700+ IPC and 900+ Assante advisors.</div>
+          </div>
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-teal">2</div>LinkedIn signal filter</div>
+            <div class="acq-body">Search LinkedIn by firm name. Filter for advisors who have posted in the last 30 days — these are active, visible, and will respond. Prioritise anyone who has posted about client service, time, or workflow.</div>
+            <div class="acq-why aw-teal">Why: Active LinkedIn users reply to outreach at 2–3× the rate of dormant profiles.</div>
+          </div>
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-teal">3</div>Champion referrals</div>
+            <div class="acq-body">Jason Pereira (IPC) and Christian Battistelli (Assante) are named Focal users. A direct introduction from either of them reaches their peer network instantly — with trust pre-loaded.</div>
+            <div class="acq-why aw-teal">Why: Referrals account for 67% of new client acquisition in the advisory industry. (Schwab RIA Benchmarking, 2024)</div>
+          </div>
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-teal">4</div>Industry events</div>
+            <div class="acq-body">Advocis national events, IPC and Assante annual advisor conferences, FP Canada's annual congress. High-quality conversations at lower volume. One live demo in a room of five advisors outperforms 50 cold emails.</div>
+            <div class="acq-why aw-teal">Why: Event-sourced leads convert at 40% opportunity-to-close — the highest of any channel. (B2B Funnel Benchmarks, 2025)</div>
+          </div>
         </div>
       </div>
-      <div class="stk">
-        <div class="card">
-          <div class="c-eye">Market Rate, Canada · North Padel Club Toronto</div>
-          <div class="cprice d">$40–$120</div>
-          <div class="cdesc">Per court per hour. For 90 mins split 4 ways = $15–$45 per person minimum. Racket rental billed separately.</div>
-        </div>
-        <div class="card">
-          <div class="c-eye">Rookie and Ace Standard Rate · Posted pricing</div>
-          <div class="cprice d">$28–$36</div>
-          <div class="cdesc">Per person for 90 mins, split 4 ways. Off-peak $28.13, peak $35.63. Rackets not included. Still out of reach for a recurring student budget.</div>
-        </div>
-        <div class="card card-k">
-          <div class="c-eye">Negotiated Student Rate · Feb 2026</div>
-          <div class="cprice d">$25+HST</div>
-          <div class="cdesc">Per person for 90 mins. Rackets included. Below their own off-peak rate. The first price point at which padel actually becomes accessible on a student schedule.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════ 04 INTERVENTION -->
-<section id="solution">
-  <div class="wrap">
-    <div class="cols">
+      <!-- PIPELINE -->
       <div>
-        <span class="s-num">04 The Intervention</span>
-        <h2 class="s-title d">Not a pitch. <em>A proposal backed by evidence.</em></h2>
-        <p class="b">I approached Derek with the data, not an ask. The proposal solved two problems simultaneously: his utilization gap and the affordability barrier keeping students off the court. The result was a formal written agreement, signed and operational within weeks.</p>
-        <div class="terms">
-          <div class="tr-h">Agreed Terms, Rookie and Ace · Feb 2026</div>
-          <div class="tr-list">
-            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>$25+HST per student</strong> for 90 mins including racket rental. Min 4, max 6 per session.</div></div>
-            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>Available Mon–Fri before 3:30pm</strong>, the exact dead hours identified in the data.</div></div>
-            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>Keyholder access</strong>: first student ever given a key to the facility.</div></div>
-            <div class="tr-row"><div class="tr-dot"></div><div class="tr-tx"><strong>Long-term goal:</strong> UW team competing in tournaments, acknowledged in writing by Derek.</div></div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="steps">
-          <div class="step">
-            <div class="st-n">01</div>
-            <div><div class="st-t">Diagnosed the problem with data</div><div class="st-b">Scraped booking data, mapped the dead hours, interviewed Derek to understand fixed costs. Gave him a specific problem to solve, not a vague feeling.</div></div>
-          </div>
-          <div class="step">
-            <div class="st-n">02</div>
-            <div><div class="st-t">Designed a two-sided solution</div><div class="st-b">Derek needed utilization in dead hours. Students needed an affordable access point. The student rate structure solved both in one move.</div></div>
-          </div>
-          <div class="step">
-            <div class="st-n">03</div>
-            <div><div class="st-t">Took operational ownership</div><div class="st-b">Offered to open and close the facility during those slots personally. Removed Derek's operational risk entirely, guaranteeing sessions run without requiring his presence.</div></div>
-          </div>
-          <div class="step">
-            <div class="st-n">04</div>
-            <div><div class="st-t">Expanded to clubs and university outreach</div><div class="st-b">Coordinating events with multiple university clubs in parallel. Building the demand side wide enough to sustain the partnership, and eventually a UW tournament team.</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════ 05 TRACTION -->
-<section id="traction">
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <span class="s-num">05 Early Traction</span>
-        <h2 class="s-title d">Under 8 weeks in. <em>The signal is real.</em></h2>
-        <p class="b">This community is 1–2 months old. The numbers are early and presented honestly. What matters at this stage isn't scale. The story is whether the right things are moving in the right direction. And they are.</p>
-        <div class="g2" style="margin-top:var(--sp3);">
-          <div class="stat"><div class="sn">5–10</div><div class="sl">Active players in person</div><div class="ss">Month 1 of operations</div></div>
-          <div class="stat"><div class="sn">↑</div><div class="sl">Group chat growing weekly</div><div class="ss">Primary coordination channel</div></div>
-          <div class="stat"><div class="sn">Multi</div><div class="sl">University club events in progress</div><div class="ss">Demand-side expansion underway</div></div>
-          <div class="stat"><div class="sn">1</div><div class="sl">Student converted to paid club member</div><div class="ss">Strongest early signal of product-market fit</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="tl">
-          <div class="tl-row">
-            <div class="tl-dot"></div>
-            <div>
-              <div class="tl-d">Jan 2026</div>
-              <div class="tl-t">Identified the gap</div>
-              <div class="tl-b">Scraped booking data, identified the dead-hours pattern, interviewed Derek. Confirmed the utilization problem was structural, not seasonal.</div>
+        <div class="sec-label">Pipeline stages — 7 steps, under 14 days</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="pipeline">
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal">1</div><div class="ps-line pl-teal"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Prospect</div>
+                <div class="ps-desc">Matches ICP. Identified from directory + LinkedIn. Not yet contacted.</div>
+                <span class="ps-exit pe-teal">Exit: Added to outreach list</span>
+              </div>
             </div>
-          </div>
-          <div class="tl-row">
-            <div class="tl-dot"></div>
-            <div>
-              <div class="tl-d">Feb 2026</div>
-              <div class="tl-t">Negotiated formal terms</div>
-              <div class="tl-b">Student rate ($25+HST including rackets), keyholder access, formal written agreement. First student ever offered the role.</div>
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal-ring">2</div><div class="ps-line pl-teal"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Contacted</div>
+                <div class="ps-desc">LinkedIn connect request sent with a personal, non-pitch note.</div>
+                <span class="ps-exit pe-teal">Exit: Connection accepted</span>
+              </div>
             </div>
-          </div>
-          <div class="tl-row">
-            <div class="tl-dot act"></div>
-            <div>
-              <div class="tl-d">Feb – Mar 2026 · Now</div>
-              <div class="tl-t">Building the community</div>
-              <div class="tl-b">First players activated. Group chat growing. Club event partnerships in progress. One player converted to paid club member. The loop is working.</div>
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal-ring">3</div><div class="ps-line pl-teal"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Replied</div>
+                <div class="ps-desc">Positive response to value message or follow-up email.</div>
+                <span class="ps-exit pe-teal">Exit: Expressed interest</span>
+              </div>
             </div>
-          </div>
-          <div class="tl-row">
-            <div class="tl-dot fut"></div>
-            <div>
-              <div class="tl-d fut">2026, Ongoing</div>
-              <div class="tl-t">UW tournament team and self-sustaining community</div>
-              <div class="tl-b">Goal endorsed by Derek in writing: a UW team competing in tournaments. Building infrastructure that outlasts my time at Waterloo.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════ 06 WHY NOW -->
-<section id="whynow">
-  <div class="wrap">
-
-    <!-- Header row -->
-    <div class="cols" style="margin-bottom:var(--sp4);">
-      <div>
-        <span class="s-num">06 Why Now</span>
-        <h2 class="s-title d">Canada is at the <em>bottom of the curve.</em> That's the window.</h2>
-      </div>
-      <div>
-        <p class="b">Every sport that goes global follows the same adoption arc. Spain and Italy are mature. The US is mid-curve. Canada is just starting. The window to build community infrastructure before the rush is open right now. That window won't stay open long.</p>
-      </div>
-    </div>
-
-    <!-- S-curve: full width -->
-    <div class="cv-dk" style="border-radius:var(--r);padding:var(--sp4);">
-      <div class="cv-cap" style="color:rgba(255,255,255,.35);margin-bottom:var(--sp4);">Padel Adoption Curve, Global Markets</div>
-      <canvas id="scurve" width="1100" height="340"></canvas>
-      <div class="cv-leg">
-        <div class="cv-li"><div class="cv-ld" style="background:rgba(255,255,255,.3)"></div>Mature</div>
-        <div class="cv-li"><div class="cv-ld" style="background:#ffd93d"></div>Growth phase</div>
-        <div class="cv-li"><div class="cv-ld" style="background:var(--green)"></div>Early stage</div>
-      </div>
-    </div>
-    <div class="cv-note" style="margin-top:var(--sp1);margin-bottom:var(--sp4);"><strong>Spain took ~15 years</strong> to reach padel saturation. The US compressed to under 5 years. Canada's compression will be faster. The time to build community infrastructure is now, not later.</div>
-
-    <!-- Network + insight cards: 2-col -->
-    <div class="cols">
-      <div>
-        <div class="cv-lt" style="border-radius:var(--r);padding:var(--sp3);background:var(--grey-light);border:1px solid var(--border);">
-          <div class="cv-cap" style="color:var(--grey);margin-bottom:var(--sp3);">How the Community Compounds, Word of Mouth Model</div>
-          <canvas id="network" width="480" height="280"></canvas>
-        </div>
-        <div class="cv-note" style="margin-top:var(--sp1);"><strong>Padel is structurally viral.</strong> The game requires 4 players. Every new player is incentivised to recruit 3 others. Word of mouth isn't just a strategy here. It's how the sport works.</div>
-      </div>
-      <div class="stk">
-        <div class="card">
-          <div class="c-eye">Network effect</div>
-          <div class="c-head d">Format forces social growth</div>
-          <div class="c-body">Padel is always played in groups of 4. Every player needs 3 others. The sport's format makes organic growth the default. Structurally viral by design.</div>
-        </div>
-        <div class="card card-t">
-          <div class="c-eye">Revenue signal</div>
-          <div class="c-head d">1 student already converted to a paid club member</div>
-          <div class="c-body">Showed up through word of mouth, decided the sport was worth a recurring membership. That's direct revenue for Derek that only exists because of this community.</div>
-        </div>
-        <div class="card">
-          <div class="c-eye">Market timing</div>
-          <div class="c-head d">Canada is 2–3 years behind the US curve</div>
-          <div class="c-body">The US went from ~200 to 688 courts in under 3 years. Canada consistently follows with a short lag. The infrastructure window is open. And closing.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════ 07 PIPELINE — DARK CHAPTER -->
-<section id="pipeline" class="sec-dark">
-  <div class="wrap">
-    <div class="cols-wide">
-      <div>
-        <span class="s-num">07 Growth Pipeline</span>
-        <h2 class="s-title d">How the community is <em>actually growing</em> right now.</h2>
-        <p class="b">No ads. No budget. Just word of mouth. And it's working. The pipeline is simple by design: bring people who've never played, let the sport convert them, watch the network compound. The funnel isn't a strategy. It's what's already happening.</p>
-        <div class="g2" style="margin-top:var(--sp4);">
-          <div class="card card-k">
-            <div class="c-eye">Why padel converts</div>
-            <div class="c-body">Easy to learn, immediately fun. Within one session most players are hooked. The sport does the selling. Show up with the right people.</div>
-          </div>
-          <div class="card card-k">
-            <div class="c-eye">The long-term business case</div>
-            <div class="c-body">A paid club member generates more recurring value than any number of one-off sessions. This community isn't just filling dead hours. It's building Derek's membership base.</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="funnel">
-          <div class="fn-row fn-0">
-            <div>
-              <div class="fn-eye">Entry point</div>
-              <div class="fn-ttl d">Me + my <em>network</em></div>
-            </div>
-            <div class="fn-body">I show up, bring friends who've never played. Padel is easy to learn and immediately fun. The sport does the selling. First session is the hook.</div>
-          </div>
-          <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="fn-row fn-1">
-            <div>
-              <div class="fn-eye">Layer 2</div>
-              <div class="fn-ttl d">Friends of <em>friends</em></div>
-            </div>
-            <div class="fn-body">Players who came once bring someone new the next time. No coordination required. The social nature of padel (always played in groups of 4) makes organic growth the default.</div>
-          </div>
-          <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="fn-row fn-2">
-            <div>
-              <div class="fn-eye">Layer 3</div>
-              <div class="fn-ttl d">University <em>clubs</em></div>
-            </div>
-            <div>
-              <div class="fn-body">Reached out to university organizations including UW Marketing Club and varsity-adjacent sports clubs to run structured padel events.</div>
-              <div class="fn-tags">
-                <span class="tag">UW Marketing Club</span>
-                <span class="tag">Varsity sports clubs</span>
-                <span class="tag tag-g">More in progress</span>
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal-ring">4</div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Discovery call</div>
+                <div class="ps-desc">20 minutes. Confirm the pain is real. ICP filter applied here — disqualify if no admin burden.</div>
+                <span class="ps-exit pe-teal">Exit: Pain confirmed, demo booked</span>
               </div>
             </div>
           </div>
-          <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="fn-row fn-3">
-            <div>
-              <div class="sig">Key signal</div>
-              <div class="fn-eye">Conversion</div>
-              <div class="fn-ttl d">Paid club <em>member</em></div>
+          <div class="pipeline">
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal-ring">5</div><div class="ps-line pl-teal"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Demo</div>
+                <div class="ps-desc">30 minutes. Connect features to their specific pain. ROI math run live. End with trial ask.</div>
+                <span class="ps-exit pe-teal">Exit: Trial agreed</span>
+              </div>
             </div>
-            <div class="fn-body">One player from the community has already converted to a full paying club member at Rookie and Ace. A student who showed up through word of mouth decided the sport was worth a recurring membership. <strong>That's direct, recurring revenue for Derek that exists entirely because of this community.</strong></div>
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal-ring">6</div><div class="ps-line pl-teal"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">14-day trial</div>
+                <div class="ps-desc">Active support. Day 3 check-in. Day 7 usage data sent. Day 12 close conversation anchored to their data.</div>
+                <span class="ps-exit pe-teal">Exit: Paid conversion</span>
+              </div>
+            </div>
+            <div class="ps ps-teal">
+              <div class="ps-left"><div class="ps-num pn-teal">7</div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Closed + referral ask</div>
+                <div class="ps-desc">Immediately post-close: ask for two referrals in their IPC or Assante network. The flywheel starts here.</div>
+                <span class="ps-exit pe-teal">Exit: 2 referrals given</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════ 08 OUTCOME -->
-<section id="outcome">
-  <div class="wrap">
-    <div class="cols">
+      <!-- KEY METRICS -->
       <div>
-        <span class="s-num">08 What Exists Now</span>
-        <h2 class="s-title d">Real change. <em>Eight weeks in.</em></h2>
-        <p class="b">None of this existed before January 2026. The structural pieces are already in place. Built without a budget, a team, or anyone asking me to do it.</p>
-        <div class="quote">
-          <div class="q-tx">"I think it would be great to see a U of W team competing amongst the other schools out there playing tournaments."</div>
-          <div class="q-at">Derek, Owner · Rookie and Ace Padel, Kitchener ON · Feb 2026</div>
-        </div>
-        <div class="stk" style="margin-top:var(--sp3);">
-          <div class="card">
-            <div class="c-eye">Business Impact</div>
-            <div class="c-head d">Dead hours generating consistent revenue</div>
-            <div class="c-body">A fixed-cost facility bleeding daytime utilization now has structured sessions running in those slots, coordinated and operated without requiring Derek's time.</div>
+        <div class="sec-label">Key metrics to track</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="metric-row">
+            <div class="mr-n mr-teal">12%</div>
+            <div><div class="mr-title">LinkedIn reply rate</div><div class="mr-desc">Target. Below 8% means messaging or ICP is wrong — fix before scaling volume.</div></div>
           </div>
-          <div class="card">
-            <div class="c-eye">Community Impact</div>
-            <div class="c-head d">Students accessing a sport they couldn't afford before</div>
-            <div class="c-body">$25+HST including rackets, significantly below the $28–36 standard split rate. Padel went from inaccessible to actually playable on a student budget.</div>
+          <div class="metric-row">
+            <div class="mr-n mr-teal">70%</div>
+            <div><div class="mr-title">Discovery → demo</div><div class="mr-desc">If lower, qualification is weak or there's drop-off between booking and showing up.</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="mr-n mr-teal">40%</div>
+            <div><div class="mr-title">Demo → trial</div><div class="mr-desc">Below 30% means the demo isn't connecting to their specific pain. Too generic.</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="mr-n mr-teal">30%</div>
+            <div><div class="mr-title">Trial → paid</div><div class="mr-desc">Industry floor is 19.4% (Nalpeiron, 2025). Active support during trial closes the gap.</div></div>
           </div>
         </div>
       </div>
-      <div class="stk">
-        <div class="card card-k">
-          <div class="c-eye">Partnership</div>
-          <div class="c-head d">Keyholder role, first ever offered to a student</div>
-          <div class="c-body">Formal written agreement, keyholder access. A business extending operational trust. Not a favour, not a referral deal. A keyholder role is operational ownership without the title.</div>
-        </div>
-        <div class="card card-k">
-          <div class="c-eye">Long-term Vision</div>
-          <div class="c-head d">UW tournament team in progress. Community built to last.</div>
-          <div class="c-body">Club events in motion, university outreach underway. The goal is a self-sustaining padel community in KW, with a UW team competing regionally. Endorsed by Derek in writing.</div>
-        </div>
-        <div class="card card-t">
-          <div class="c-eye">Revenue Signal</div>
-          <div class="c-head d">1 student already converted to a paid club member</div>
-          <div class="c-body">The strongest possible early signal. A student who showed up through word of mouth decided the sport was worth a recurring membership. This is the model working as intended.</div>
-        </div>
-        <div class="card">
-          <div class="c-eye">Operations</div>
-          <div class="c-head d">Fully operational without the facility owner present</div>
-          <div class="c-body">I open, run, and close sessions during dead-hour slots. Derek's operational risk is zero. The agreement scales with trust, not intervention.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════ 09 REFLECTION -->
-<section id="reflection">
-  <div class="wrap">
-    <div class="cols">
+      <!-- OBJECTIONS -->
       <div>
-        <span class="s-num">09 What I Learned</span>
-        <h2 class="s-title d">The method is the <em>same everywhere.</em></h2>
-        <p class="b">Find the gap between what exists and what should exist. Diagnose it with data. Propose a solution that works for both sides. Take responsibility before you have the title to justify it.</p>
-        <p class="b">That's product thinking: identifying a two-sided problem, building a solution that serves both sides simultaneously, and measuring it against real outcomes. I did it with a booking spreadsheet and a padel racket. The instinct scales.</p>
-        <p class="b">I can't see a broken system and leave it alone. And I don't rely on instinct to diagnose it. I pull the data first, because that's what earns the conversation. That's not something I decided to be. It's just what happens when I look at something long enough.</p>
-      </div>
-      <div class="stk">
-        <div class="card">
-          <div class="c-eye">Pattern 01</div>
-          <div class="c-head d">Data changes the conversation</div>
-          <div class="c-body">I didn't pitch Derek on enthusiasm. I showed him his own numbers in a way he hadn't seen before. That's what made the partnership possible, not the idea itself.</div>
+        <div class="sec-label">Solo advisor objections</div>
+        <div class="obj-row">
+          <div class="obj-q"><span class="oq-mark ot-teal">"</span>I already take notes — it's part of the job.</div>
+          <div class="obj-a"><strong>But is it the part you want to spend 45 minutes on after every meeting?</strong> Focal doesn't remove the notes — it removes the time. Your judgment and relationship stay. The typing and filing go.</div>
         </div>
-        <div class="card">
-          <div class="c-eye">Pattern 02</div>
-          <div class="c-head d">I use data to find undervalued segments</div>
-          <div class="c-body">Students were an undervalued segment Derek hadn't priced or marketed toward. That's not just a padel insight. It's the same analytical instinct I applied at TD. The context changes. The method doesn't.</div>
-        </div>
-        <div class="card">
-          <div class="c-eye">Pattern 03</div>
-          <div class="c-head d">Both sides of the market matter</div>
-          <div class="c-body">Solving Derek's utilization gap alone doesn't work if students can't afford to show up. The affordability piece wasn't secondary. It was half the solution.</div>
-        </div>
-        <div class="card card-t">
-          <div class="c-eye">Pattern 04</div>
-          <div class="c-head d">Ownership without permission</div>
-          <div class="c-body">Nobody asked me to fix this. I just couldn't walk past it once I saw it. That's not a personality trait I'm describing. It's a pattern I keep returning to.</div>
+        <div class="obj-row" style="margin-top:8px">
+          <div class="obj-q"><span class="oq-mark ot-teal">"</span>I'm worried about client data security.</div>
+          <div class="obj-a"><strong>Stateless AI — no audio stored, no data used to train models, built on Microsoft Azure.</strong> SOC 2 certified. IPC and Assante have already cleared this. You don't need to re-do the compliance diligence.</div>
         </div>
       </div>
+
     </div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<div class="ft-wrap">
-  <footer>
-    <div class="f-brand">Raheil · Wealthsimple Accelerators 2026</div>
-    <div class="f-note">
-      <p>This case study is itself an example of how I work.</p>
-      <p>Built with data, AI, and a padel racket. Still in progress.</p>
-    </div>
-  </footer>
 </div>
 
+<!-- ═══════════════════════════════════ TAB 3: ICP 2 ═══════════════════════════════════ -->
+<div class="panel" id="panel-2">
+  <div class="page-grid">
+
+    <!-- LEFT -->
+    <div class="pg-left">
+      <div>
+        <div class="eyebrow ey-amber">ICP 2 — Acquisition Framework</div>
+        <div class="page-title amber">The Growing<br><em>Advisory Team</em></div>
+        <div class="page-desc">A named advisory practice of 2–5 advisors that has recently added a team member, creating workflow inconsistency. Two distinct buyers in the same room: the managing partner who approves the spend, and the associates who use it daily.</div>
+      </div>
+
+      <div>
+        <div class="sec-label">Profile at a glance</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="left-stat">
+            <div class="ls-label">Target network</div>
+            <div class="ls-val" style="color:var(--amber);font-size:17px;margin-top:2px">IPC · Assante · Wellington-Altus</div>
+            <div class="ls-sub">Tier 1 + Tier 2 networks both viable</div>
+          </div>
+          <div class="left-stat">
+            <div class="ls-label">Team size</div>
+            <div class="ls-val" style="color:var(--amber)">2–5</div>
+            <div class="ls-sub">Named practice, not a solo operating alone</div>
+          </div>
+          <div class="left-stat">
+            <div class="ls-label">Target cycle</div>
+            <div class="ls-val" style="color:var(--amber)">21–30 days</div>
+            <div class="ls-sub">Multi-buyer dynamic requires champion activation</div>
+          </div>
+          <div class="left-stat">
+            <div class="ls-label">Pricing</div>
+            <div class="ls-val" style="color:var(--amber);font-size:18px;margin-top:2px">Per seat</div>
+            <div class="ls-sub">Monthly or annual — validated at discovery</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-label">The two buyers — different pain, different pitch</div>
+        <div class="dim" style="margin-bottom:8px">
+          <div class="dim-top">
+            <div class="dim-title">Managing partner</div>
+            <span class="dim-tag dt-amber">Economic buyer</span>
+          </div>
+          <div class="dim-body">Cares about compliance consistency across the team, audit risk, oversight, and operational efficiency at a firm level. Approves the spend. Needs to be able to defend the decision to a regulator.</div>
+        </div>
+        <div class="dim">
+          <div class="dim-top">
+            <div class="dim-title">Associate advisor</div>
+            <span class="dim-tag dt-teal">End user + champion</span>
+          </div>
+          <div class="dim-body">Cares about their own daily time savings — notes, follow-ups, CRM updates. If they love it, they become the internal advocate who closes the managing partner from the inside.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="pg-right">
+
+      <!-- FINDING THEM -->
+      <div>
+        <div class="sec-label">How we find them</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-amber">1</div>Named practice filter</div>
+            <div class="acq-body">In network directories, filter for practices with a branded firm name rather than just "John Smith, IPC" — that signals a team. Cross-reference on LinkedIn for team size and recent hires.</div>
+            <div class="acq-why aw-amber">Why: A named practice signals enough scale for inconsistency to be a real problem, not a theoretical one.</div>
+          </div>
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-amber">2</div>Recent growth signal</div>
+            <div class="acq-body">LinkedIn shows when someone adds "Associate at [Practice Name]" to their profile. A new team addition in the last 18 months means workflow inconsistency is fresh and unsolved.</div>
+            <div class="acq-why aw-amber">Why: Growth creates the exact problem Focal solves. New hire = new documentation habits entering an existing workflow.</div>
+          </div>
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-amber">3</div>Industry award lists</div>
+            <div class="acq-body">Wealth Professional 5-Star Advisory Teams, Investment Executive Report Cards, Advisors' Report Card — all published annually with named practices. Teams that win are investing in excellence and receptive to tools.</div>
+            <div class="acq-why aw-amber">Why: Award-winning teams have demonstrated commitment to raising their standard. They are the most receptive buyer profile.</div>
+          </div>
+          <div class="acq-card">
+            <div class="acq-card-title"><div class="acq-num an-amber">4</div>B2 close → enterprise bridge</div>
+            <div class="acq-body">Every closed B2 deal creates an expansion opportunity. Ask the managing partner to share their experience with the network's practice management team. One reference to a network head is worth 200 cold outreach messages.</div>
+            <div class="acq-why aw-amber">Why: This is the bridge from Bucket 2 to an enterprise motion. Build it into every close from day one.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PIPELINE -->
+      <div>
+        <div class="sec-label">Pipeline stages — 8 steps with champion activation (the critical difference vs ICP 1)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="pipeline">
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber">1</div><div class="ps-line pl-amber"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Prospect</div>
+                <div class="ps-desc">Named practice identified. Managing partner mapped. Tech-forward associate identified as potential champion.</div>
+                <span class="ps-exit pe-amber">Exit: Both buyers mapped</span>
+              </div>
+            </div>
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber-ring">2</div><div class="ps-line pl-amber"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Contacted</div>
+                <div class="ps-desc">LinkedIn connect to managing partner only. Personal note referencing their practice specifically.</div>
+                <span class="ps-exit pe-amber">Exit: Connection accepted</span>
+              </div>
+            </div>
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber-ring">3</div><div class="ps-line pl-amber"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Replied</div>
+                <div class="ps-desc">Positive response after compliance or team-level ROI message. SOC 2 sent proactively.</div>
+                <span class="ps-exit pe-amber">Exit: Interest confirmed</span>
+              </div>
+            </div>
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber-ring">4</div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Discovery call</div>
+                <div class="ps-desc">20 minutes. Confirm team workflow pain. Ask specifically: "Who on your team tends to test new tools first?" — surface the champion.</div>
+                <span class="ps-exit pe-amber">Exit: Champion identified, demo booked with both buyers</span>
+              </div>
+            </div>
+          </div>
+          <div class="pipeline">
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber-ring">5</div><div class="ps-line pl-amber"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Team demo</div>
+                <div class="ps-desc">Managing partner + champion associate both present. Compliance pitch for one, time-saving demo for the other. Simultaneously.</div>
+                <span class="ps-exit pe-amber">Exit: Trial agreed by both</span>
+              </div>
+            </div>
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber">6</div><div class="ps-line pl-amber"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Champion activated</div>
+                <div class="ps-desc">Champion has used Focal in a real client meeting within 72 hours of trial start. This is a concrete event — confirmed on Day 3 check-in. If it hasn't happened, the deal is at risk.</div>
+                <span class="ps-exit pe-amber">Exit: Champion used it in a real meeting</span>
+              </div>
+            </div>
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber-ring">7</div><div class="ps-line pl-amber"></div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Team trial</div>
+                <div class="ps-desc">Group onboarding call within 48 hrs. Day 7 usage report sent to managing partner. Champion pulls the team from the inside.</div>
+                <span class="ps-exit pe-amber">Exit: Usage across the full team</span>
+              </div>
+            </div>
+            <div class="ps ps-amber">
+              <div class="ps-left"><div class="ps-num pn-amber">8</div></div>
+              <div class="ps-body">
+                <div class="ps-stage">Closed + expansion ask</div>
+                <div class="ps-desc">Anchor close to usage data. Immediately ask managing partner to share experience with network practice management team.</div>
+                <span class="ps-exit pe-amber">Exit: Network introduction made</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEY METRICS -->
+      <div>
+        <div class="sec-label">Key metrics to track</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="metric-row">
+            <div class="mr-n mr-amber">8%</div>
+            <div><div class="mr-title">LinkedIn reply rate</div><div class="mr-desc">Slightly lower than ICP 1 — managing partners are busier and more guarded. Below 6% means the message or target is wrong.</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="mr-n mr-amber">72h</div>
+            <div><div class="mr-title">Champion activation time</div><div class="mr-desc">The most important metric in ICP 2. If the champion hasn't used Focal in a real meeting within 72 hours, re-engage immediately.</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="mr-n mr-amber">40%</div>
+            <div><div class="mr-title">Demo → trial</div><div class="mr-desc">Same target as ICP 1 — the two-buyer demo structure is designed to get both buyers nodding simultaneously.</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="mr-n mr-amber">25%</div>
+            <div><div class="mr-title">Trial → paid</div><div class="mr-desc">Slightly lower than ICP 1 due to multi-stakeholder complexity. Group onboarding and the Day 7 report close the gap.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBJECTIONS -->
+      <div>
+        <div class="sec-label">Team-specific objections</div>
+        <div class="obj-row">
+          <div class="obj-q"><span class="oq-mark ot-amber">"</span>Our advisors all have different workflows — one tool won't work for everyone.</div>
+          <div class="obj-a"><strong>That inconsistency is exactly the problem Focal solves, not a reason to avoid it.</strong> Focal standardises the output — the note format, the CRM sync, the follow-up structure — while each advisor still runs their meeting their own way. The client sees consistency. The advisor keeps autonomy.</div>
+        </div>
+        <div class="obj-row" style="margin-top:8px">
+          <div class="obj-q"><span class="oq-mark ot-amber">"</span>We'd need our whole team to adopt it — that's a change management challenge.</div>
+          <div class="obj-a"><strong>That's why we start with your most tech-forward advisor on a 14-day trial first.</strong> When they show the rest of the team what their meetings look like now versus before, the adoption happens from the inside. You don't manage the change — they do it for you.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ TAB 4: DEMO PITCH — GOLD SEAL ═══════════════════════════════════ -->
+<div class="panel" id="panel-3">
+  <div class="page-grid" style="grid-template-columns:240px 1fr">
+
+    <!-- LEFT -->
+    <div class="pg-left">
+      <div>
+        <div class="eyebrow ey-navy">Demo Pitch</div>
+        <div class="page-title" style="color:var(--navy)">Gold Seal<br>Financial<br><em style="color:var(--navy3)">Group.</em></div>
+        <div class="page-desc">ICP 2 target. 4-advisor team. Wellington-Altus, Kelowna BC. 5-Star rated. Cross-border specialists. This pitch covers every step from why we picked them to how we close.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="left-stat">
+          <div class="ls-label">Network</div>
+          <div class="ls-val" style="color:var(--navy3);font-size:16px;margin-top:2px">Wellington-Altus</div>
+          <div class="ls-sub">Tech-forward. Top-rated 6 years running.</div>
+        </div>
+        <div class="left-stat">
+          <div class="ls-label">Team size</div>
+          <div class="ls-val" style="color:var(--navy3)">4</div>
+          <div class="ls-sub">Brendan Willis · Tanya Wilson · Gerry Austgarden · Ryan Archambault</div>
+        </div>
+        <div class="left-stat">
+          <div class="ls-label">Pricing</div>
+          <div class="ls-val" style="color:var(--navy3);font-size:18px;margin-top:2px">Per seat</div>
+          <div class="ls-sub">Monthly or annual — to be validated with Jerry</div>
+        </div>
+        <div class="left-stat">
+          <div class="ls-label">Target cycle</div>
+          <div class="ls-val" style="color:var(--navy3)">21 days</div>
+          <div class="ls-sub">First touch to close</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-label">The two buyers</div>
+        <div class="dim" style="margin-bottom:8px">
+          <div class="dim-top">
+            <div class="dim-title">Brendan Willis</div>
+            <span class="dim-tag dt-navy">Economic buyer</span>
+          </div>
+          <div class="dim-body">Managing partner. FCSI. 25 years. Cares about compliance, audit trail, team oversight. Approves the spend.</div>
+        </div>
+        <div class="dim">
+          <div class="dim-top">
+            <div class="dim-title">Ryan Archambault</div>
+            <span class="dim-tag dt-teal">Champion</span>
+          </div>
+          <div class="dim-body">Youngest PM. Most tech-forward. Cares about time savings, CRM automation, daily friction removed. Pulls Brendan to the close from the inside.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="pg-right">
+
+      <!-- WHY THIS FIRM -->
+      <div>
+        <div class="sec-label">Why Gold Seal — 5 signals that make this the right target</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+          <div class="dim">
+            <div class="dim-top"><div class="dim-title">Wellington-Altus culture</div><span class="dim-tag dt-teal">Signal 1</span></div>
+            <div class="dim-body">Tech-forward network. Advisors self-select for tool openness. A sale here takes 3 weeks — not 18 months at a bank.</div>
+          </div>
+          <div class="dim">
+            <div class="dim-top"><div class="dim-title">4-advisor sweet spot</div><span class="dim-tag dt-teal">Signal 2</span></div>
+            <div class="dim-body">At 4 people, workflow inconsistency is real and compliance risk is non-trivial. Nobody owns the problem — that's our entry point.</div>
+          </div>
+          <div class="dim">
+            <div class="dim-top"><div class="dim-title">5-Star Award 2024</div><span class="dim-tag dt-teal">Signal 3</span></div>
+            <div class="dim-body">Teams investing in excellence are receptive to tools that raise their standard. The award also gives us a warm opener. (Wealth Professional, 2024)</div>
+          </div>
+          <div class="dim">
+            <div class="dim-top"><div class="dim-title">Cross-border specialists</div><span class="dim-tag dt-teal">Signal 4</span></div>
+            <div class="dim-body">Snowbirds, dual citizens, PFIC tracking — every session needs a compliance trail for both CIRO and the SEC. Maximum admin load per meeting.</div>
+          </div>
+          <div class="dim">
+            <div class="dim-top"><div class="dim-title">HNW client base</div><span class="dim-tag dt-teal">Signal 5</span></div>
+            <div class="dim-body">90-minute sessions with business owners, doctors, multi-generational families. Not RRSP top-ups. Maximum documentation per session.</div>
+          </div>
+          <div class="dim" style="background:var(--paper)">
+            <div class="dim-top"><div class="dim-title">CRM — verified</div><span class="dim-tag" style="background:var(--green-lt);color:var(--green);border:1px solid #86efac">✓ Confirmed</span></div>
+            <div class="dim-body">Focal integrates natively with Redtail, Wealthbox, Salesforce, Practifi, XLR8 — bi-directional sync. (WealthTech Today, Apr 2025)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTREACH SEQUENCE -->
+      <div>
+        <div class="sec-label">6-touch outreach sequence — what we send and why</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="acq-card" style="gap:5px">
+              <div class="acq-card-title"><div class="acq-num" style="background:var(--paper);color:var(--navy3);font-size:10px;font-weight:700">D0</div>LinkedIn connect — no pitch</div>
+              <div class="acq-body">"Came across Gold Seal's 5-Star recognition and your post about cycling as a metaphor for carrying clients through headwinds. Rare to see a team that thinks that carefully. Would love to connect."</div>
+              <div class="acq-why" style="background:var(--paper);color:var(--navy3)">Compliment grounded in his own content. Zero ask.</div>
+            </div>
+            <div class="acq-card" style="gap:5px">
+              <div class="acq-card-title"><div class="acq-num" style="background:var(--paper);color:var(--navy3);font-size:10px;font-weight:700">D2</div>LinkedIn — value first, no ask</div>
+              <div class="acq-body">"Advisors spend 28% of working time on admin unrelated to advice. For a cross-border practice like Gold Seal, that number is almost certainly higher."</div>
+              <div class="acq-why" style="background:var(--paper);color:var(--navy3)">Plants the problem before introducing the solution.</div>
+            </div>
+            <div class="acq-card" style="gap:5px">
+              <div class="acq-card-title"><div class="acq-num" style="background:var(--navy);color:#fff;font-size:10px;font-weight:700">D4</div>LinkedIn — first ask for 15 min</div>
+              <div class="acq-body">"Teams doing cross-border work generate more compliance documentation per meeting than almost anyone. One Wellington-Altus team recovered nearly a full day per week. Worth 15 minutes?"</div>
+              <div class="acq-why" style="background:var(--paper);color:var(--navy3)">Timeline hook. Peer reference. Single CTA.</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="acq-card" style="gap:5px">
+              <div class="acq-card-title"><div class="acq-num" style="background:var(--paper);color:var(--navy3);font-size:10px;font-weight:700">D7</div>Email — compliance + SOC 2 attached</div>
+              <div class="acq-body">"CIRO enforcement activity is increasing, with a specific focus on documentation consistency across advisor teams. For a 4-advisor practice with cross-border complexity, this is one of the most common audit flags. SOC 2 attached."</div>
+              <div class="acq-why" style="background:var(--paper);color:var(--navy3)">Attaching SOC 2 proactively removes the compliance objection before it's raised.</div>
+            </div>
+            <div class="acq-card" style="gap:5px;border-top:2px solid var(--navy)">
+              <div class="acq-card-title"><div class="acq-num" style="background:var(--navy);color:#fff;font-size:10px;font-weight:700">D8</div>Phone call — one question, not a pitch</div>
+              <div class="acq-body">"Brendan — is documentation load genuinely a pain point at Gold Seal right now, or something your team has already solved?"</div>
+              <div class="acq-why" style="background:var(--paper);color:var(--navy3)">Their answer tells us whether to accelerate or change angle. Fastest trust channel.</div>
+            </div>
+            <div class="acq-card" style="gap:5px">
+              <div class="acq-card-title"><div class="acq-num" style="background:var(--paper);color:var(--navy3);font-size:10px;font-weight:700">D14</div>Final email — ROI math, graceful exit</div>
+              <div class="acq-body">"4 advisors × 10 hrs saved = 40 team hours per week. Even 2 additional HNW clients from that capacity — what does that mean for Gold Seal's AUM? No pressure if timing's off."</div>
+              <div class="acq-why" style="background:var(--paper);color:var(--navy3)">Team-level framing. Ends without guilt. Door stays open.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEMO STRUCTURE + OBJECTIONS side by side -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+        <!-- DEMO STRUCTURE -->
+        <div>
+          <div class="sec-label">30-minute demo structure</div>
+          <table class="tier-table">
+            <thead><tr><th>Time</th><th>Action</th><th>For whom</th></tr></thead>
+            <tbody>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--teal);width:52px">0–3</td>
+                <td style="font-size:12.5px">Reflect their pain from discovery back to them</td>
+                <td style="font-size:12px;color:var(--muted)">Both — proves we listened</td>
+              </tr>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--teal)">3–8</td>
+                <td style="font-size:12.5px">Live demo — simulated cross-border snowbird meeting</td>
+                <td style="font-size:12px;color:var(--muted)">Both — their scenario, not generic</td>
+              </tr>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--teal)">8–14</td>
+                <td style="font-size:12.5px">Automated summary output — let Ryan react first</td>
+                <td style="font-size:12px;color:var(--muted)">Ryan — his enthusiasm sells Brendan</td>
+              </tr>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--teal)">14–19</td>
+                <td style="font-size:12.5px">Compliance view + answer on Wealthbox native AI</td>
+                <td style="font-size:12px;color:var(--muted)">Brendan — purpose-built beats bolted-on</td>
+              </tr>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--teal)">19–25</td>
+                <td style="font-size:12.5px">Team ROI math live — 4 × 10 hrs = 40 hrs/week</td>
+                <td style="font-size:12px;color:var(--muted)">Both — let them answer the upside</td>
+              </tr>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--teal)">25–30</td>
+                <td style="font-size:12.5px">Propose 14-day team trial + group onboarding call</td>
+                <td style="font-size:12px;color:var(--muted)">Both — not a decision ask, just 14 days</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top:10px;padding:12px 14px;background:var(--teal-lt);border:1px solid var(--teal-mid);border-radius:6px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-dk);margin-bottom:6px">Pivot moment — Minute 22</div>
+            <div style="font-size:12.5px;color:var(--teal-dk);line-height:1.6;font-style:italic">"Your advisors spend 45–60 min on documentation after a complex cross-border session. If Focal compresses that to under 5 minutes, and the team runs 8 meetings a week — that's <strong>5 hours recovered per advisor, per week.</strong> What would Gerry or Tanya do with that time?"</div>
+          </div>
+        </div>
+
+        <!-- OBJECTIONS + TRIAL -->
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div>
+            <div class="sec-label">Key objections with Gold Seal-specific answers</div>
+            <div class="obj-row">
+              <div class="obj-q" style="font-size:12px"><span class="oq-mark ot-teal">"</span>Client data cannot be stored anywhere.</div>
+              <div class="obj-a" style="font-size:12px"><strong>Stateless AI — no audio, no video, no training data.</strong> Azure-native. SOC 2 Type 2. CIRO and SEC-ready. Already in your inbox.</div>
+            </div>
+            <div class="obj-row">
+              <div class="obj-q" style="font-size:12px"><span class="oq-mark ot-teal">"</span>We already have a CRM.</div>
+              <div class="obj-a" style="font-size:12px"><strong>Focal sits on top of it — doesn't replace it.</strong> Bi-directional sync with Redtail, Wealthbox, Salesforce. No migration. Works tomorrow morning.</div>
+            </div>
+            <div class="obj-row">
+              <div class="obj-q" style="font-size:12px"><span class="oq-mark ot-teal">"</span>Wealthbox is building their own AI tool.</div>
+              <div class="obj-a" style="font-size:12px"><strong>A CRM add-on ≠ a purpose-built compliance platform.</strong> Focal has advisor-specific templates, compliance flagging, cross-border depth. Purpose-built beats bolted-on. (Kitces, Apr 2025)</div>
+            </div>
+            <div class="obj-row">
+              <div class="obj-q" style="font-size:12px"><span class="oq-mark ot-teal">"</span>We're high-touch — clients want personal service.</div>
+              <div class="obj-a" style="font-size:12px"><strong>Focal removes the pen so advisors are fully present.</strong> Attention improves. Note quality improves. That is higher-touch, not lower.</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Trial execution — 4 checkpoints</div>
+            <div class="pipeline">
+              <div class="ps ps-teal">
+                <div class="ps-left"><div class="ps-num pn-teal" style="width:22px;height:22px;font-size:9px">D0</div><div class="ps-line pl-teal"></div></div>
+                <div class="ps-body" style="padding-bottom:12px">
+                  <div class="ps-stage" style="font-size:12.5px">Group onboarding — all 4 advisors, 48 hrs</div>
+                  <div class="ps-desc">Solo setup kills team trials. All four live together prevents the "I haven't had time" excuse.</div>
+                </div>
+              </div>
+              <div class="ps ps-teal">
+                <div class="ps-left"><div class="ps-num pn-teal-ring" style="width:22px;height:22px;font-size:9px">D3</div><div class="ps-line pl-teal"></div></div>
+                <div class="ps-body" style="padding-bottom:12px">
+                  <div class="ps-stage" style="font-size:12.5px">Check in with Ryan (champion)</div>
+                  <div class="ps-desc">"Have you run it in a real meeting yet?" His enthusiasm is the signal that pulls Brendan.</div>
+                </div>
+              </div>
+              <div class="ps ps-teal">
+                <div class="ps-left"><div class="ps-num pn-teal-ring" style="width:22px;height:22px;font-size:9px">D7</div><div class="ps-line pl-teal"></div></div>
+                <div class="ps-body" style="padding-bottom:12px">
+                  <div class="ps-stage" style="font-size:12.5px">Send usage report to Brendan</div>
+                  <div class="ps-desc">Hours saved, meetings processed, CRM records updated. Lead with data — don't ask how it's going.</div>
+                </div>
+              </div>
+              <div class="ps ps-teal">
+                <div class="ps-left"><div class="ps-num pn-teal" style="width:22px;height:22px;font-size:9px">D12</div></div>
+                <div class="ps-body">
+                  <div class="ps-stage" style="font-size:12.5px">Close + expansion ask</div>
+                  <div class="ps-desc">"Based on your team's usage over the past two weeks, let's make this permanent. Anchor the conversation to the data — hours recovered per advisor, meetings processed, CRM records updated automatically. Annual upfront unlocks the best rate." Then: "Would you share your experience with the Wellington-Altus practice management team?"</div>
+                  <span class="ps-exit pe-teal" style="font-size:10px">One referral → enterprise conversation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .content -->
+
 <script>
-/* — progress bar — */
-window.addEventListener('scroll',()=>{
-  const h=document.documentElement;
-  const pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
-  document.getElementById('progress').style.width=pct+'%';
-});
-
-/* — trigger charts on scroll — */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    if(e.target.id==='data')   setTimeout(animBars,300);
-    if(e.target.id==='whynow') setTimeout(()=>{drawCurve();drawNet();},200);
-  });
-},{threshold:.07});
-document.querySelectorAll('section').forEach(s=>io.observe(s));
-
-function animBars(){document.querySelectorAll('.br-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});}
-
-/* — S-curve — */
-function drawCurve(){
-  const c=document.getElementById('scurve');if(!c)return;
-  const ctx=c.getContext('2d');
-  const W=c.width,H=c.height;
-  const p={t:32,r:32,b:48,l:32};
-  const iW=W-p.l-p.r,iH=H-p.t-p.b;
-  ctx.clearRect(0,0,W,H);
-  const sig=x=>1/(1+Math.exp(-10*(x-.5)));
-  const gx=x=>p.l+x*iW, gy=x=>p.t+iH-sig(x)*iH;
-
-  /* gradient fill */
-  ctx.beginPath();
-  for(let i=0;i<=300;i++) i===0?ctx.moveTo(gx(i/300),gy(i/300)):ctx.lineTo(gx(i/300),gy(i/300));
-  ctx.lineTo(gx(1),p.t+iH);ctx.lineTo(gx(0),p.t+iH);ctx.closePath();
-  const grad=ctx.createLinearGradient(0,p.t,0,p.t+iH);
-  grad.addColorStop(0,'rgba(0,194,122,.18)');grad.addColorStop(1,'rgba(0,194,122,.01)');
-  ctx.fillStyle=grad;ctx.fill();
-
-  /* curve */
-  ctx.beginPath();
-  for(let i=0;i<=300;i++) i===0?ctx.moveTo(gx(i/300),gy(i/300)):ctx.lineTo(gx(i/300),gy(i/300));
-  ctx.strokeStyle='rgba(255,255,255,.28)';ctx.lineWidth=2.5;ctx.stroke();
-
-  /* countries */
-  const pts=[
-    [.84,'Spain',  'rgba(255,255,255,.55)', -22, false],
-    [.75,'Italy',  'rgba(255,255,255,.45)',  22, false],
-    [.64,'UK',     'rgba(255,255,255,.45)', -22, false],
-    [.53,'USA',    '#ffd93d',               -22, false],
-    [.38,'AUS',    '#ffd93d',                22, false],
-    [.21,'Canada', '#00c27a',               -26, true ],
-  ];
-
-  pts.forEach(([xp,lbl,col,yo,hi])=>{
-    const x=gx(xp),y=gy(xp);
-    /* dashed drop line */
-    ctx.save();ctx.setLineDash([3,6]);
-    ctx.beginPath();ctx.moveTo(x,y+8);ctx.lineTo(x,p.t+iH);
-    ctx.strokeStyle=hi?'rgba(0,194,122,.35)':'rgba(255,255,255,.1)';
-    ctx.lineWidth=1;ctx.stroke();ctx.restore();
-
-    /* dot */
-    const r=hi?11:6;
-    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
-    if(hi){
-      ctx.beginPath();ctx.arc(x,y,18,0,Math.PI*2);
-      ctx.strokeStyle='rgba(0,194,122,.3)';ctx.lineWidth=2;ctx.stroke();
-    }
-
-    /* name label */
-    ctx.fillStyle=col;
-    ctx.font=(hi?'600 14px':'13px')+' DM Sans,sans-serif';
-    ctx.textAlign='center';ctx.fillText(lbl,x,y+yo);
-
-    /* "you are here" pill for Canada */
-    if(hi){
-      const tag='← you are here';
-      ctx.font='600 11px DM Sans,sans-serif';
-      const tw=ctx.measureText(tag).width;
-      const tx=x+26,ty=y-4;
-      ctx.fillStyle='rgba(0,194,122,.18)';
-      ctx.beginPath();ctx.roundRect(tx-8,ty-14,tw+16,22,6);ctx.fill();
-      ctx.fillStyle='#00c27a';ctx.textAlign='left';ctx.fillText(tag,tx,ty+3);
-    }
-  });
-
-  /* axis label */
-  ctx.fillStyle='rgba(255,255,255,.22)';ctx.font='12px DM Sans,sans-serif';
-  ctx.textAlign='center';ctx.fillText('Market Maturity →',p.l+iW/2,H-8);
-}
-
-/* — Network — */
-function drawNet(){
-  const c=document.getElementById('network');if(!c)return;
-  const ctx=c.getContext('2d');
-  const W=c.width,H=c.height;
-  ctx.clearRect(0,0,W,H);
-  const ys=[36,110,185,255];
-  const nodes=[
-    [W/2,ys[0],'You','#00c27a',13],
-    [W/2-100,ys[1],'Friend','rgba(0,194,122,.7)',9],
-    [W/2,ys[1],'Friend','rgba(0,194,122,.7)',9],
-    [W/2+100,ys[1],'Friend','rgba(0,194,122,.7)',9],
-    [W/2-145,ys[2],'','rgba(0,0,0,.1)',6],
-    [W/2-90,ys[2],'','rgba(0,0,0,.1)',6],
-    [W/2-35,ys[2],'','rgba(0,0,0,.1)',6],
-    [W/2+20,ys[2],'','rgba(0,0,0,.1)',6],
-    [W/2+70,ys[2],'','rgba(0,0,0,.1)',6],
-    [W/2+120,ys[2],'','rgba(0,0,0,.1)',6],
-    [W/2-155,ys[3],'Member','#00c27a',9],
-    [W/2-60,ys[3],'','rgba(0,0,0,.08)',5],
-    [W/2+30,ys[3],'','rgba(0,0,0,.08)',5],
-    [W/2+120,ys[3],'Club event','#ffd93d',9],
-  ];
-  [[0,1],[0,2],[0,3],[1,4],[1,5],[2,6],[2,7],[3,8],[3,9],[4,10],[5,11],[7,12],[9,13]].forEach(([a,b])=>{
-    ctx.beginPath();ctx.moveTo(nodes[a][0],nodes[a][1]);ctx.lineTo(nodes[b][0],nodes[b][1]);
-    ctx.strokeStyle='rgba(0,0,0,.07)';ctx.lineWidth=1;ctx.stroke();
-  });
-  nodes.forEach(([x,y,lbl,col,r])=>{
-    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
-    if(lbl){ctx.fillStyle='#1a1a1a';ctx.font=`${r>=9?'500 10px':'9px'} DM Sans,sans-serif`;ctx.textAlign='center';ctx.fillText(lbl,x,y+r+11);}
-  });
-  ['Seed','Layer 1','Layer 2','Layer 3'].forEach((l,i)=>{
-    ctx.fillStyle='rgba(0,0,0,.18)';ctx.font='9px DM Sans,sans-serif';ctx.textAlign='right';ctx.fillText(l,W-3,ys[i]+4);
-  });
+function switchTab(i){
+  document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',j===i));
+  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',j===i));
 }
 </script>
 </body>
